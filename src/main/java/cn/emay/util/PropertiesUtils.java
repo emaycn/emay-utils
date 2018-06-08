@@ -108,7 +108,7 @@ public class PropertiesUtils {
 		Properties properties = getProperties(propertiesClassPath);
 		if (properties == null || !properties.containsKey(key))
 			return defaultValue;
-		Date date = DateUtil.parseDate(properties.getProperty(key), format);
+		Date date = DateUtils.parseDate(properties.getProperty(key), format);
 		if (date == null)
 			date = defaultValue;
 		return date;

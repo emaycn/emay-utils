@@ -2,6 +2,12 @@ package cn.emay.util;
 
 import java.math.BigDecimal;
 
+/**
+ * BigDecimal精准计算工具
+ * 
+ * @author Frank
+ *
+ */
 public class BigDecimalUtils {
 
 	/**
