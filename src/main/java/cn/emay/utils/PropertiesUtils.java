@@ -1,4 +1,4 @@
-package cn.emay.util;
+package cn.emay.utils;
 
 import java.io.File;
 import java.io.FileInputStream;

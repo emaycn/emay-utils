@@ -1,4 +1,4 @@
-package cn.emay.util.command;
+package cn.emay.utils.command;
 
 import java.io.File;
 import java.util.Map;
@@ -9,15 +9,7 @@ import java.util.Map;
  * @author Frank
  *
  */
-public class CommandUtil {
-
-	final static String ERROR_CODE_NO_COMMAND = "1001";
-	final static String ERROR_CODE_EXCEPTION = "1002";
-	final static String ERROR_CODE_TIME_OUT = "1003";
-
-	final static String ERROR_MESSAGE_TIME_OUT = "time out ";
-	final static String ERROR_MESSAGE_NO_COMMAND = "no command to execution";
-	final static String ERROR_MESSAGE_EXCEPTION = "run exception";
+public class CommandUtils {
 
 	/**
 	 * 执行外部命令
@@ -31,8 +23,8 @@ public class CommandUtil {
 	 *         1001 没有可执行的命令<br/>
 	 *         1002 JAVA调用外部命令报错<br/>
 	 */
-	public static void execCommand(String[] commands) {
-		execCommand(commands, 0l);
+	public static CommandResult execCommand(String[] commands) {
+		return execCommand(commands, 0l);
 	}
 
 	/**
@@ -50,8 +42,8 @@ public class CommandUtil {
 	 *         1002 JAVA调用外部命令报错<br/>
 	 *         1003 超时<br/>
 	 */
-	public static void execCommand(String[] commands, Long timeout) {
-		execCommand(null, null, commands, timeout, null);
+	public static CommandResult execCommand(String[] commands, Long timeout) {
+		return execCommand(null, null, commands, timeout, null);
 	}
 
 	/**
@@ -75,14 +67,12 @@ public class CommandUtil {
 	 *         1002 JAVA调用外部命令报错<br/>
 	 *         1003 超时<br/>
 	 */
-	public static void execCommand(File workDirectory, Map<String, String> params, String[] commands, Long timeout, String charsetName) {
-		if (commands == null || commands.length == 0)
-			throw new IllegalArgumentException(ERROR_MESSAGE_NO_COMMAND);
+	public static CommandResult execCommand(File workDirectory, Map<String, String> params, String[] commands, Long timeout, String charsetName) {
+		if (commands == null || commands.length == 0) {
+			throw new IllegalArgumentException("command is null");
+		}
 		CommandWorker worker = new CommandWorker(workDirectory, params, commands, timeout, charsetName);
-		worker.start();
-		worker.getMessage();
-		worker.getExitCode();
-		worker.getErrormessage();
+		return worker.runCommand();
 	}
 
 }
