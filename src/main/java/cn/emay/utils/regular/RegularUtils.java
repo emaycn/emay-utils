@@ -1,4 +1,4 @@
-package cn.emay.utils;
+package cn.emay.utils.regular;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  * @author
  *
  */
-public class RegUtils {
+public class RegularUtils {
 
 	/**
 	 * 是否匹配

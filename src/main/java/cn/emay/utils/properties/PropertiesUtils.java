@@ -1,4 +1,4 @@
-package cn.emay.utils;
+package cn.emay.utils.properties;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
+
+import cn.emay.utils.date.DateUtils;
 
 /**
  * 配置文件读取工具
