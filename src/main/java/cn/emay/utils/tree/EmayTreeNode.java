@@ -13,7 +13,7 @@ import java.util.Map;
  * @param <T>
  *            果实
  */
-public class TreeNode<K, T> {
+public class EmayTreeNode<K, T> {
 
 	/**
 	 * 节点ID，同级唯一
@@ -28,19 +28,19 @@ public class TreeNode<K, T> {
 	/**
 	 * 父节点
 	 */
-	private TreeNode<K, T> parent;
+	private EmayTreeNode<K, T> parent;
 
 	/**
 	 * 子节点
 	 */
-	private Map<K, TreeNode<K, T>> children;
+	private Map<K, EmayTreeNode<K, T>> children;
 
 	/**
 	 * 
 	 * @param id
 	 *            节点id
 	 */
-	public TreeNode(K id) {
+	public EmayTreeNode(K id) {
 		if (id == null) {
 			throw new IllegalArgumentException("TreeNode's id will be not null !");
 		}
@@ -54,7 +54,7 @@ public class TreeNode<K, T> {
 	 * @param fruit
 	 *            节点果实
 	 */
-	public TreeNode(K id, T fruit) {
+	public EmayTreeNode(K id, T fruit) {
 		this(id);
 		this.fruit = fruit;
 	}
@@ -70,7 +70,7 @@ public class TreeNode<K, T> {
 	 * @param isCover
 	 *            是否重复ID覆盖
 	 */
-	public TreeNode(K id, T fruit, TreeNode<K, T> parent, boolean isCover) {
+	public EmayTreeNode(K id, T fruit, EmayTreeNode<K, T> parent, boolean isCover) {
 		this(id, fruit);
 		if (parent != null) {
 			parent.addChild(this, isCover);
@@ -83,7 +83,7 @@ public class TreeNode<K, T> {
 	 * @param child
 	 * @return
 	 */
-	public boolean addChild(TreeNode<K, T> child) {
+	public boolean addChild(EmayTreeNode<K, T> child) {
 		return addChild(child, false);
 	}
 
@@ -95,9 +95,9 @@ public class TreeNode<K, T> {
 	 *            是否覆盖重复ID的子节点
 	 * @return
 	 */
-	public boolean addChild(TreeNode<K, T> child, boolean isCover) {
+	public boolean addChild(EmayTreeNode<K, T> child, boolean isCover) {
 		if (children == null) {
-			children = new HashMap<K, TreeNode<K, T>>();
+			children = new HashMap<K, EmayTreeNode<K, T>>();
 		}
 		if ((children.containsKey(child.id) && isCover) || (!children.containsKey(child.id))) {
 			children.put(child.id, child);
@@ -160,7 +160,7 @@ public class TreeNode<K, T> {
 	 * 
 	 * @return
 	 */
-	public TreeNode<K, T> getParent() {
+	public EmayTreeNode<K, T> getParent() {
 		return parent;
 	}
 
@@ -169,7 +169,7 @@ public class TreeNode<K, T> {
 	 * 
 	 * @return
 	 */
-	public Map<K, TreeNode<K, T>> getChildren() {
+	public Map<K, EmayTreeNode<K, T>> getChildren() {
 		return children;
 	}
 
@@ -180,7 +180,7 @@ public class TreeNode<K, T> {
 	 *            子节点ID
 	 * @return
 	 */
-	public TreeNode<K, T> getChild(K id) {
+	public EmayTreeNode<K, T> getChild(K id) {
 		return children == null ? null : children.get(id);
 	}
 
