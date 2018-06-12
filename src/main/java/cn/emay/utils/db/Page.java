@@ -1,4 +1,4 @@
-package cn.emay.utils.page;
+package cn.emay.utils.db;
 
 import java.io.Serializable;
 import java.util.HashMap;

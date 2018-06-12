@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import cn.emay.utils.page.Page;
+import cn.emay.utils.db.Page;
 
 public class TestPage {
 
