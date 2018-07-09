@@ -94,6 +94,14 @@ public class PropertiesUtils {
 		return defaultValue;
 	}
 
+	/**
+	 * 獲取單精度浮点数的值
+	 * 
+	 * @param key
+	 * @param propertiesClassPath
+	 * @param defaultValue
+	 * @return
+	 */
 	public static float getFloatProperty(String key, String propertiesClassPath, float defaultValue) {
 		Properties properties = getProperties(propertiesClassPath);
 		if (properties == null || !properties.containsKey(key))
@@ -106,6 +114,15 @@ public class PropertiesUtils {
 		return value;
 	}
 
+	/**
+	 * 获取日期值
+	 * 
+	 * @param key
+	 * @param propertiesClassPath
+	 * @param format
+	 * @param defaultValue
+	 * @return
+	 */
 	public static Date getDateProperty(String key, String propertiesClassPath, String format, Date defaultValue) {
 		Properties properties = getProperties(propertiesClassPath);
 		if (properties == null || !properties.containsKey(key))
@@ -116,6 +133,15 @@ public class PropertiesUtils {
 		return date;
 	}
 
+	/**
+	 * 获取精确数值
+	 * 
+	 * @param key
+	 * @param propertiesClassPath
+	 * @param format
+	 * @param defaultValue
+	 * @return
+	 */
 	public static BigDecimal getBigDecimalProperty(String key, String propertiesClassPath, String format, BigDecimal defaultValue) {
 		Properties properties = getProperties(propertiesClassPath);
 		if (properties == null || !properties.containsKey(key))
@@ -159,7 +185,7 @@ public class PropertiesUtils {
 		InputStream in = null;
 		try {
 			in = PropertiesUtils.class.getClassLoader().getResourceAsStream(propertiesClassPath);
-			if(in != null){
+			if (in != null) {
 				properties.load(in);
 			}
 		} catch (IOException e) {
@@ -169,7 +195,7 @@ public class PropertiesUtils {
 				try {
 					in.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					throw new RuntimeException(e);
 				}
 			}
 		}
@@ -189,7 +215,7 @@ public class PropertiesUtils {
 		FileInputStream fis = null;
 		try {
 			fis = new FileInputStream(file);
-			if(fis != null){
+			if (fis != null) {
 				properties.load(fis);
 			}
 		} catch (IOException e) {
@@ -199,7 +225,7 @@ public class PropertiesUtils {
 				try {
 					fis.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					throw new RuntimeException(e);
 				}
 			}
 		}
@@ -220,7 +246,7 @@ public class PropertiesUtils {
 		try {
 			File file = new File(propertiesFilePath);
 			fis = new FileInputStream(file);
-			if(fis != null){
+			if (fis != null) {
 				properties.load(fis);
 			}
 		} catch (IOException e) {
@@ -230,7 +256,7 @@ public class PropertiesUtils {
 				try {
 					fis.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					throw new RuntimeException(e);
 				}
 			}
 		}

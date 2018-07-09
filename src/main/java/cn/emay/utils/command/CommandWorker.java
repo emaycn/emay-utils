@@ -61,7 +61,7 @@ public class CommandWorker extends Thread {
 	protected CommandWorker(File workDirectory, Map<String, String> params, String[] commands, long timeout, String charsetName) {
 		this.initProcessBuilder(workDirectory, params, commands);
 		this.timeout = timeout;
-		this.charsetName = charsetName == null ? "GBK" : charsetName;
+		this.charsetName = charsetName == null ? "UTF-8" : charsetName;
 	}
 
 	/**

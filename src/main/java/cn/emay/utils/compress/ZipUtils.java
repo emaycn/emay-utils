@@ -25,7 +25,7 @@ import java.util.zip.ZipOutputStream;
 public class ZipUtils {
 
 	/**
-	 * 压缩@
+	 * 压缩
 	 * 
 	 * @param srcPath
 	 *            待压缩文件/文件夹路径

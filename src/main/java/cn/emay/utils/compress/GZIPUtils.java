@@ -3,7 +3,6 @@ package cn.emay.utils.compress;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
@@ -14,26 +13,6 @@ import java.util.zip.GZIPOutputStream;
  *
  */
 public class GZIPUtils {
-
-	/**
-	 * 数据压缩传输<br/>
-	 * 不关闭输出流
-	 * 
-	 * @param is
-	 * @param os
-	 * @throws Exception
-	 */
-	public static void compressTransfe(byte[] bytes, OutputStream out) {
-		GZIPOutputStream gos = null;
-		try {
-			gos = new GZIPOutputStream(out);
-			gos.write(bytes);
-			gos.finish();
-			gos.flush();
-		} catch (IOException e) {
-			throw new IllegalArgumentException(e);
-		}
-	}
 
 	/**
 	 * 数据压缩

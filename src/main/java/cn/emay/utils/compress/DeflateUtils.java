@@ -8,6 +8,7 @@ import java.util.zip.Inflater;
 
 /**
  * Deflate 压缩工具
+ * 
  * @author Frank
  *
  */
@@ -19,9 +20,10 @@ public class DeflateUtils {
 	 *            待解压缩的字节数组
 	 * @return 解压缩后的字节数组
 	 * @throws IOException
-	 * @throws DataFormatException 
+	 * @throws DataFormatException
 	 */
-	public static byte[] decompress(byte[] inputByte) throws IOException, DataFormatException {
+	public static byte[] decompress(byte[] inputByte) {
+		byte[] bytes = null;
 		int len = 0;
 		Inflater infl = new Inflater();
 		infl.setInput(inputByte);
@@ -36,10 +38,17 @@ public class DeflateUtils {
 				bos.write(outByte, 0, len);
 			}
 			infl.end();
+			bytes = bos.toByteArray();
+		} catch (DataFormatException e) {
+			throw new IllegalArgumentException(e);
 		} finally {
-			bos.close();
+			try {
+				bos.close();
+			} catch (IOException e) {
+				throw new IllegalArgumentException(e);
+			}
 		}
-		return bos.toByteArray();
+		return bytes;
 	}
 
 	/**
@@ -50,7 +59,8 @@ public class DeflateUtils {
 	 * @return 压缩后的数据
 	 * @throws IOException
 	 */
-	public static byte[] compress(byte[] inputByte,int level) throws IOException {
+	public static byte[] compress(byte[] inputByte, int level) {
+		byte[] bytes = null;
 		int len = 0;
 		Deflater defl = new Deflater();
 		defl.setLevel(level);
@@ -65,10 +75,15 @@ public class DeflateUtils {
 				bos.write(outputByte, 0, len);
 			}
 			defl.end();
+			bytes = bos.toByteArray();
 		} finally {
-			bos.close();
+			try {
+				bos.close();
+			} catch (IOException e) {
+				throw new IllegalArgumentException(e);
+			}
 		}
-		return bos.toByteArray();
+		return bytes;
 	}
 
 }

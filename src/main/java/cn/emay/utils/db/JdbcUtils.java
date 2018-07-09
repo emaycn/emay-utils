@@ -14,20 +14,18 @@ import java.util.Map;
 public class JdbcUtils {
 
 	/**
-	 * 批量插入，返回所有插入的数据的id
+	 * 批量插入，返回id
 	 * 
-	 * @param datasource
+	 * @param connection
 	 * @param sql
 	 * @param params
-	 * @param transaction
 	 * @return
-	 * @throws SQLException
 	 */
-	public static List<Object> saveBatch(Connection connection, final String sql, final List<Object[]> params, boolean transaction) throws SQLException {
-		if (params == null || params.size() == 0) {
-			return new ArrayList<Object>();
+	public static List<Object> saveBatchWithId(Connection connection, String sql, List<Object[]> params) {
+		if (connection == null || sql == null || params == null || params.size() == 0) {
+			throw new IllegalArgumentException("some params is null");
 		}
-		return handleTransaction(connection, transaction, new JdbcExec<List<Object>>() {
+		return handleTransaction(connection, true, new JdbcExec<List<Object>>() {
 			@Override
 			public List<Object> exec(Connection connection) {
 				List<Object> ids = new ArrayList<Object>();
@@ -44,10 +42,10 @@ public class JdbcUtils {
 						}
 						statement.addBatch();
 						if (t % 1000 == 0) {
-							statement.executeUpdate();
+							statement.executeBatch();
 						}
 					}
-					statement.executeUpdate();
+					statement.executeBatch();
 					rs = statement.getGeneratedKeys();
 					while (rs.next()) {
 						ids.add(rs.getObject(1));
@@ -55,11 +53,7 @@ public class JdbcUtils {
 				} catch (SQLException e) {
 					throw new IllegalArgumentException(e);
 				} finally {
-					try {
-						close(null, statement, rs);
-					} catch (SQLException e) {
-						throw new IllegalArgumentException(e);
-					}
+					close(connection, statement, rs);
 				}
 				return ids;
 			}
@@ -69,96 +63,211 @@ public class JdbcUtils {
 	/**
 	 * 单条插入，返回ID
 	 * 
-	 * @param datasource
+	 * @param connection
 	 * @param sql
 	 * @param params
-	 * @param transaction
 	 * @return
 	 */
-	public static Object save(Connection connection, String sql, Object[] params, boolean transaction) {
-		Object id = null;
-		PreparedStatement statement = null;
-		ResultSet rs = null;
-		try {
-			if (transaction) {
-				connection.setAutoCommit(false);
-			}
-			statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			if (params != null) {
-				for (int i = 0; i < params.length; i++) {
-					Object param = params[i];
-					statement.setObject(i + 1, param);
-				}
-			}
-			statement.executeUpdate();
-			if (transaction) {
-				connection.commit();
-			}
-			rs = statement.getGeneratedKeys();
-			while (rs.next()) {
-				id = rs.getObject(1);
-			}
-		} catch (SQLException e) {
-			throw new IllegalArgumentException(e);
-		} finally {
-			try {
-				if (transaction) {
-					connection.setAutoCommit(true);
-				}
-				close(null, statement, rs);
-			} catch (SQLException e) {
-				throw new IllegalArgumentException(e);
-			}
+	public static Object saveWithId(Connection connection, String sql, Object[] params) {
+		if (connection == null || sql == null) {
+			throw new IllegalArgumentException("some params is null");
 		}
-		return id;
+		return handleTransaction(connection, true, new JdbcExec<Object>() {
+			@Override
+			public Object exec(Connection connection) {
+				Object id = null;
+				PreparedStatement statement = null;
+				ResultSet rs = null;
+				try {
+					statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+					if (params != null) {
+						for (int i = 0; i < params.length; i++) {
+							Object param = params[i];
+							statement.setObject(i + 1, param);
+						}
+					}
+					statement.executeUpdate();
+					rs = statement.getGeneratedKeys();
+					while (rs.next()) {
+						id = rs.getObject(1);
+					}
+				} catch (SQLException e) {
+					throw new IllegalArgumentException(e);
+				} finally {
+					close(connection, statement, rs);
+				}
+				return id;
+			}
+		});
 	}
 
 	/**
-	 * 执行，返回影响行数
+	 * 单条更新
 	 * 
-	 * @param datasource
+	 * @param connection
+	 * @param sql
+	 * @param params
+	 * @return
+	 */
+	public static void upate(Connection connection, String sql, Object[] params) {
+		execute(connection, sql, params, true);
+	}
+
+	/**
+	 * 单条插入
+	 * 
+	 * @param connection
+	 * @param sql
+	 * @param params
+	 * @return
+	 */
+	public static void save(Connection connection, String sql, Object[] params) {
+		execute(connection, sql, params, true);
+	}
+
+	/**
+	 * 执行单条
+	 * 
+	 * @param connection
 	 * @param sql
 	 * @param params
 	 * @param transaction
 	 * @return
 	 */
-	public static int execute(Connection connection, String sql, Object[] params, boolean transaction) {
-		int number = 0;
-		PreparedStatement statement = null;
-		try {
-			if (transaction) {
-				connection.setAutoCommit(false);
-			}
-			statement = connection.prepareStatement(sql);
-			if (params != null) {
-				for (int i = 0; i < params.length; i++) {
-					Object param = params[i];
-					statement.setObject(i + 1, param);
-				}
-			}
-			number = statement.executeUpdate();
-			if (transaction) {
-				connection.commit();
-			}
-		} catch (SQLException e) {
-			throw new IllegalArgumentException(e);
-		} finally {
-			try {
-				if (transaction) {
-					connection.setAutoCommit(true);
-				}
-				close(null, statement, null);
-			} catch (SQLException e) {
-				throw new IllegalArgumentException(e);
-			}
+	public static void execute(Connection connection, String sql, Object[] params, boolean transaction) {
+		if (connection == null || sql == null) {
+			throw new IllegalArgumentException("some params is null");
 		}
-		return number;
+		handleTransaction(connection, transaction, new JdbcExec<Void>() {
+			@Override
+			public Void exec(Connection connection) {
+				PreparedStatement statement = null;
+				try {
+					statement = connection.prepareStatement(sql);
+					if (params != null) {
+						for (int i = 0; i < params.length; i++) {
+							Object param = params[i];
+							statement.setObject(i + 1, param);
+						}
+					}
+					statement.executeUpdate();
+				} catch (SQLException e) {
+					throw new IllegalArgumentException(e);
+				} finally {
+					close(connection, statement, null);
+				}
+				return null;
+			}
+		});
+	}
+
+	/**
+	 * 批量更新,返回成功的行数
+	 * 
+	 * @param connection
+	 * @param sql
+	 * @param params
+	 * @return
+	 */
+	public static void updateBatch(final Connection connection, final String sql, final List<Object[]> params) {
+		executeBatch(connection, sql, params, true);
+	}
+
+	/**
+	 * 批量插入,返回成功的行数
+	 * 
+	 * @param connection
+	 * @param sql
+	 * @param params
+	 * @return
+	 */
+	public static void saveBatch(final Connection connection, final String sql, final List<Object[]> params) {
+		executeBatch(connection, sql, params, true);
+	}
+
+	/**
+	 * 执行多条，返回成功的行数
+	 * 
+	 * @param connection
+	 * @param sql
+	 * @param params
+	 * @param transaction
+	 * @return
+	 */
+	public static void executeBatch(Connection connection, String sql, List<Object[]> params, boolean transaction) {
+		if (connection == null || sql == null || params == null || params.size() == 0) {
+			throw new IllegalArgumentException("some params is null");
+		}
+		handleTransaction(connection, transaction, new JdbcExec<Void>() {
+			@Override
+			public Void exec(Connection connection) {
+				PreparedStatement statement = null;
+				try {
+					statement = connection.prepareStatement(sql);
+					int t = 0;
+					for (Object[] obj : params) {
+						t++;
+						for (int i = 0; i < obj.length; i++) {
+							Object param = obj[i];
+							statement.setObject(i + 1, param);
+						}
+						statement.addBatch();
+						if (t % 1000 == 0) {
+							statement.executeBatch();
+						}
+					}
+					statement.executeBatch();
+				} catch (SQLException e) {
+					throw new IllegalArgumentException(e);
+				} finally {
+					close(connection, statement, null);
+				}
+				return null;
+			}
+		});
+	}
+
+	/**
+	 * 执行多条，返回成功的行数
+	 * 
+	 * @param connection
+	 * @param sqls
+	 * @param transaction
+	 * @return
+	 */
+	public static void executeBatch(Connection connection, boolean transaction, String... sqls) {
+		if (connection == null || sqls == null || sqls.length == 0) {
+			throw new IllegalArgumentException("some params is null");
+		}
+		handleTransaction(connection, transaction, new JdbcExec<Void>() {
+			@Override
+			public Void exec(Connection connection) {
+				Statement statement = null;
+				try {
+					statement = connection.createStatement();
+					int t = 0;
+					for (String sql : sqls) {
+						t++;
+						statement.addBatch(sql);
+						if (t % 1000 == 0) {
+							statement.executeBatch();
+						}
+					}
+					statement.executeBatch();
+				} catch (SQLException e) {
+					throw new IllegalArgumentException(e);
+				} finally {
+					close(connection, statement, null);
+				}
+				return null;
+			}
+		});
 	}
 
 	/**
 	 * 查询，每一行用map表示，返回多行
 	 * 
-	 * @param datasource
+	 * @param connection
 	 * @param sql
 	 * @param params
 	 * @return
@@ -188,11 +297,7 @@ public class JdbcUtils {
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(e);
 		} finally {
-			try {
-				close(null, statement, rs);
-			} catch (SQLException e) {
-				throw new IllegalArgumentException(e);
-			}
+			close(connection, statement, rs);
 		}
 		return result;
 	}
@@ -200,7 +305,7 @@ public class JdbcUtils {
 	/**
 	 * 查询单一数据，map表示
 	 * 
-	 * @param datasource
+	 * @param connection
 	 * @param sql
 	 * @param params
 	 * @return
@@ -224,16 +329,12 @@ public class JdbcUtils {
 				for (int i = 1; i <= length; i++) {
 					map.put(meta.getColumnName(i), rs.getObject(i));
 				}
-				continue;
+				break;
 			}
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(e);
 		} finally {
-			try {
-				close(null, statement, rs);
-			} catch (SQLException e) {
-				throw new IllegalArgumentException(e);
-			}
+			close(connection, statement, rs);
 		}
 		return map;
 	}
@@ -247,9 +348,9 @@ public class JdbcUtils {
 	 * @param bean
 	 * @return
 	 */
-	public static <T> T selectUnique(Connection connection, String sql, Object[] params, JdbcBean<T> bean) {
+	public static <T> T selectUnique(Connection connection, String sql, Object[] params, JdbcBeanParser<T> bean) {
 		Map<String, Object> map = selectUnique(connection, sql, params);
-		return bean.replaceTo(map);
+		return bean.parser(map);
 	}
 
 	/**
@@ -261,25 +362,38 @@ public class JdbcUtils {
 	 * @param bean
 	 * @return
 	 */
-	public static <T> List<T> select(Connection connection, String sql, Object[] params, JdbcBean<T> bean) {
+	public static <T> List<T> select(Connection connection, String sql, Object[] params, JdbcBeanParser<T> bean) {
 		List<Map<String, Object>> list = select(connection, sql, params);
 		List<T> beans = new ArrayList<T>();
 		for (Map<String, Object> data : list) {
-			beans.add(bean.replaceTo(data));
+			beans.add(bean.parser(data));
 		}
 		return beans;
 	}
 
-	public static <T> T handleTransaction(Connection connection, boolean openTransaction, JdbcExec<T> exec) throws SQLException {
-		boolean isOldOpen = connection.getAutoCommit();
-		if (openTransaction && isOldOpen) {
-			connection.setAutoCommit(false);
+	/**
+	 * 处理事务
+	 * 
+	 * @param connection
+	 * @param openTransaction
+	 * @param exec
+	 * @return
+	 */
+	public static <T> T handleTransaction(Connection connection, boolean openTransaction, JdbcExec<T> exec) {
+		T t = null;
+		try {
+			boolean isOldOpen = connection.getAutoCommit();
+			if (openTransaction && isOldOpen) {
+				connection.setAutoCommit(false);
+			}
+			t = exec.exec(connection);
+			if (openTransaction) {
+				connection.commit();
+			}
+			connection.setAutoCommit(isOldOpen);
+		} catch (SQLException e) {
+			throw new IllegalArgumentException(e);
 		}
-		T t = exec.exec(connection);
-		if (openTransaction) {
-			connection.commit();
-		}
-		connection.setAutoCommit(isOldOpen);
 		return t;
 	}
 
@@ -289,18 +403,22 @@ public class JdbcUtils {
 	 * @param connection
 	 * @param statement
 	 * @param rs
-	 * @throws SQLException
 	 */
-	public static void close(Connection connection, Statement statement, ResultSet rs) throws SQLException {
-		if (rs != null) {
-			rs.close();
+	public static void close(Connection connection, Statement statement, ResultSet rs) {
+		try {
+			if (rs != null) {
+				rs.close();
+			}
+			if (statement != null) {
+				statement.close();
+			}
+			if (connection != null) {
+				connection.close();
+			}
+		} catch (SQLException e) {
+			throw new IllegalArgumentException(e);
 		}
-		if (statement != null) {
-			statement.close();
-		}
-		if (connection != null) {
-			connection.close();
-		}
+
 	}
 
 }
