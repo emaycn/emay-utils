@@ -121,8 +121,9 @@ public class AES {
 	 * @return 加密后数据
 	 */
 	public static byte[] encrypt(byte[] content, byte[] password, String algorithm) {
-		if (content == null || password == null)
+		if (content == null || password == null) {
 			return null;
+		}
 		try {
 			Cipher cipher = null;
 			if (algorithm.endsWith("PKCS7Padding")) {
@@ -149,8 +150,9 @@ public class AES {
 	 * @return 解密后数据
 	 */
 	public static byte[] decrypt(byte[] content, byte[] password, String algorithm) {
-		if (content == null || password == null)
+		if (content == null || password == null) {
 			return null;
+		}
 		try {
 			Cipher cipher = null;
 			if (algorithm.endsWith("PKCS7Padding")) {
@@ -180,8 +182,9 @@ public class AES {
 	 * @return 加密后数据
 	 */
 	public static byte[] encrypt(byte[] content, byte[] password, byte[] ivStr, String algorithm) {
-		if (content == null || password == null)
+		if (content == null || password == null) {
 			return null;
+		}
 		try {
 			Cipher cipher = null;
 			if (algorithm.endsWith("PKCS7Padding")) {
@@ -211,8 +214,9 @@ public class AES {
 	 * @return 解密后数据
 	 */
 	public static byte[] decrypt(byte[] content, byte[] password, byte[] ivStr, String algorithm) {
-		if (content == null || password == null)
+		if (content == null || password == null) {
 			return null;
+		}
 		try {
 			Cipher cipher = null;
 			if (algorithm.endsWith("PKCS7Padding")) {

@@ -117,10 +117,10 @@ public class DateUtils {
 		cale.setTime(new Date());
 		cale.add(Calendar.MONTH, -1);
 		cale.set(Calendar.DAY_OF_MONTH, cale.getActualMaximum(Calendar.DAY_OF_MONTH));
-		cale.set(Calendar.HOUR_OF_DAY, 0);
-		cale.set(Calendar.MINUTE, 0);
-		cale.set(Calendar.SECOND, 0);
-		cale.set(Calendar.MILLISECOND, 0);
+		cale.set(Calendar.HOUR_OF_DAY, 23);
+		cale.set(Calendar.MINUTE, 59);
+		cale.set(Calendar.SECOND, 59);
+		cale.set(Calendar.MILLISECOND, 999);
 		return cale.getTime();
 	}
 
@@ -149,6 +149,25 @@ public class DateUtils {
 		Calendar cale = Calendar.getInstance();
 		cale.setTime(new Date());
 		cale.set(Calendar.DAY_OF_MONTH, cale.getActualMaximum(Calendar.DAY_OF_MONTH));
+		cale.set(Calendar.HOUR_OF_DAY, 23);
+		cale.set(Calendar.MINUTE, 59);
+		cale.set(Calendar.SECOND, 59);
+		cale.set(Calendar.MILLISECOND, 999);
+		return cale.getTime();
+	}
+	
+	/**
+	 * 获取本月第一天最早时间
+	 *
+	 * @return Date
+	 */
+	public static Date getTheMonthFirstDay(Date date) {
+		if (date == null) {
+			return null;
+		}
+		Calendar cale = Calendar.getInstance();
+		cale.setTime(date);
+		cale.set(Calendar.DAY_OF_MONTH, 1);
 		cale.set(Calendar.HOUR_OF_DAY, 0);
 		cale.set(Calendar.MINUTE, 0);
 		cale.set(Calendar.SECOND, 0);
@@ -157,7 +176,7 @@ public class DateUtils {
 	}
 
 	/**
-	 * 获取本月最后一天最早时间
+	 * 获取本月最后一天最晚时间
 	 *
 	 * @return Date
 	 */
@@ -168,11 +187,10 @@ public class DateUtils {
 		Calendar cale = Calendar.getInstance();
 		cale.setTime(date);
 		cale.set(Calendar.DAY_OF_MONTH, cale.getActualMaximum(Calendar.DAY_OF_MONTH));
-		cale.set(Calendar.HOUR, 0);
-		cale.set(Calendar.HOUR_OF_DAY, 0);
-		cale.set(Calendar.MINUTE, 0);
-		cale.set(Calendar.SECOND, 0);
-		cale.set(Calendar.MILLISECOND, 0);
+		cale.set(Calendar.HOUR_OF_DAY, 23);
+		cale.set(Calendar.MINUTE, 59);
+		cale.set(Calendar.SECOND, 59);
+		cale.set(Calendar.MILLISECOND, 999);
 		return cale.getTime();
 	}
 

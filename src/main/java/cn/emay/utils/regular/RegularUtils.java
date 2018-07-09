@@ -19,8 +19,9 @@ public class RegularUtils {
 	 * @return
 	 */
 	public static boolean matches(String reg, String checkString) {
-		if (checkString == null)
+		if (checkString == null) {
 			return false;
+		}
 		Pattern p = Pattern.compile(reg);
 		Matcher m = p.matcher(checkString);
 		return m.matches();

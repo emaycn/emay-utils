@@ -1,4 +1,4 @@
-package cn.emay.utils;
+package cn.emay.utils.compress;
 
 import cn.emay.utils.compress.ZipUtils;
 

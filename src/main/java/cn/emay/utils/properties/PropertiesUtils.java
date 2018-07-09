@@ -29,8 +29,9 @@ public class PropertiesUtils {
 	 */
 	public static String getProperty(String key, String propertiesClassPath) {
 		Properties properties = getProperties(propertiesClassPath);
-		if (properties == null)
+		if (properties == null) {
 			return null;
+		}
 		return properties.getProperty(key);
 	}
 
@@ -44,8 +45,9 @@ public class PropertiesUtils {
 	 */
 	public static int getIntProperty(String key, String propertiesClassPath, int defaultValue) {
 		Properties properties = getProperties(propertiesClassPath);
-		if (properties == null || !properties.containsKey(key))
+		if (properties == null || !properties.containsKey(key)) {
 			return defaultValue;
+		}
 		int value = defaultValue;
 		try {
 			value = Integer.valueOf(properties.getProperty(key));
@@ -64,8 +66,9 @@ public class PropertiesUtils {
 	 */
 	public static long getLongProperty(String key, String propertiesClassPath, long defaultValue) {
 		Properties properties = getProperties(propertiesClassPath);
-		if (properties == null || !properties.containsKey(key))
+		if (properties == null || !properties.containsKey(key)) {
 			return defaultValue;
+		}
 		long value = defaultValue;
 		try {
 			value = Long.valueOf(properties.getProperty(key));
@@ -84,8 +87,9 @@ public class PropertiesUtils {
 	 */
 	public static boolean getBooleanProperty(String key, String propertiesClassPath, boolean defaultValue) {
 		Properties properties = getProperties(propertiesClassPath);
-		if (properties == null || !properties.containsKey(key))
+		if (properties == null || !properties.containsKey(key)) {
 			return defaultValue;
+		}
 		String valuep = properties.getProperty(key);
 		if (valuep.equalsIgnoreCase("true") || valuep.equalsIgnoreCase("on") || valuep.equalsIgnoreCase("1"))
 			return true;
@@ -104,11 +108,33 @@ public class PropertiesUtils {
 	 */
 	public static float getFloatProperty(String key, String propertiesClassPath, float defaultValue) {
 		Properties properties = getProperties(propertiesClassPath);
-		if (properties == null || !properties.containsKey(key))
+		if (properties == null || !properties.containsKey(key)) {
 			return defaultValue;
+		}
 		float value = defaultValue;
 		try {
 			value = Float.valueOf(properties.getProperty(key));
+		} catch (Exception e) {
+		}
+		return value;
+	}
+	
+	/**
+	 * 獲取雙精度浮点数的值
+	 * 
+	 * @param key
+	 * @param propertiesClassPath
+	 * @param defaultValue
+	 * @return
+	 */
+	public static double getDoubleProperty(String key, String propertiesClassPath, double defaultValue) {
+		Properties properties = getProperties(propertiesClassPath);
+		if (properties == null || !properties.containsKey(key)) {
+			return defaultValue;
+		}
+		double value = defaultValue;
+		try {
+			value = Double.valueOf(properties.getProperty(key));
 		} catch (Exception e) {
 		}
 		return value;
@@ -125,8 +151,9 @@ public class PropertiesUtils {
 	 */
 	public static Date getDateProperty(String key, String propertiesClassPath, String format, Date defaultValue) {
 		Properties properties = getProperties(propertiesClassPath);
-		if (properties == null || !properties.containsKey(key))
+		if (properties == null || !properties.containsKey(key)) {
 			return defaultValue;
+		}
 		Date date = DateUtils.parseDate(properties.getProperty(key), format);
 		if (date == null)
 			date = defaultValue;
@@ -138,14 +165,14 @@ public class PropertiesUtils {
 	 * 
 	 * @param key
 	 * @param propertiesClassPath
-	 * @param format
 	 * @param defaultValue
 	 * @return
 	 */
-	public static BigDecimal getBigDecimalProperty(String key, String propertiesClassPath, String format, BigDecimal defaultValue) {
+	public static BigDecimal getBigDecimalProperty(String key, String propertiesClassPath, BigDecimal defaultValue) {
 		Properties properties = getProperties(propertiesClassPath);
-		if (properties == null || !properties.containsKey(key))
+		if (properties == null || !properties.containsKey(key)) {
 			return defaultValue;
+		}
 		BigDecimal value = defaultValue;
 		try {
 			value = new BigDecimal(properties.getProperty(key));

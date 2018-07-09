@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JdbcUtils {
+public class JDBCUtils {
 
 	/**
 	 * 批量插入，返回id
@@ -26,11 +26,13 @@ public class JdbcUtils {
 			throw new IllegalArgumentException("some params is null");
 		}
 		return handleTransaction(connection, true, new JdbcExec<List<Object>>() {
+
+			PreparedStatement statement = null;
+			ResultSet rs = null;
+
 			@Override
 			public List<Object> exec(Connection connection) {
 				List<Object> ids = new ArrayList<Object>();
-				PreparedStatement statement = null;
-				ResultSet rs = null;
 				try {
 					statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 					int t = 0;
@@ -52,13 +54,18 @@ public class JdbcUtils {
 					}
 				} catch (SQLException e) {
 					throw new IllegalArgumentException(e);
-				} finally {
-					close(connection, statement, rs);
 				}
 				return ids;
 			}
+
+			@Override
+			public void close() {
+				JDBCUtils.close(connection, statement, rs);
+			}
 		});
 	}
+	
+	
 
 	/**
 	 * 单条插入，返回ID
@@ -73,11 +80,13 @@ public class JdbcUtils {
 			throw new IllegalArgumentException("some params is null");
 		}
 		return handleTransaction(connection, true, new JdbcExec<Object>() {
+
+			PreparedStatement statement = null;
+			ResultSet rs = null;
+
 			@Override
 			public Object exec(Connection connection) {
 				Object id = null;
-				PreparedStatement statement = null;
-				ResultSet rs = null;
 				try {
 					statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 					if (params != null) {
@@ -93,10 +102,13 @@ public class JdbcUtils {
 					}
 				} catch (SQLException e) {
 					throw new IllegalArgumentException(e);
-				} finally {
-					close(connection, statement, rs);
 				}
 				return id;
+			}
+
+			@Override
+			public void close() {
+				JDBCUtils.close(connection, statement, rs);
 			}
 		});
 	}
@@ -139,9 +151,12 @@ public class JdbcUtils {
 			throw new IllegalArgumentException("some params is null");
 		}
 		handleTransaction(connection, transaction, new JdbcExec<Void>() {
+
+			PreparedStatement statement = null;
+
 			@Override
 			public Void exec(Connection connection) {
-				PreparedStatement statement = null;
+
 				try {
 					statement = connection.prepareStatement(sql);
 					if (params != null) {
@@ -153,10 +168,13 @@ public class JdbcUtils {
 					statement.executeUpdate();
 				} catch (SQLException e) {
 					throw new IllegalArgumentException(e);
-				} finally {
-					close(connection, statement, null);
 				}
 				return null;
+			}
+
+			@Override
+			public void close() {
+				JDBCUtils.close(connection, statement, null);
 			}
 		});
 	}
@@ -199,9 +217,11 @@ public class JdbcUtils {
 			throw new IllegalArgumentException("some params is null");
 		}
 		handleTransaction(connection, transaction, new JdbcExec<Void>() {
+
+			PreparedStatement statement = null;
+
 			@Override
 			public Void exec(Connection connection) {
-				PreparedStatement statement = null;
 				try {
 					statement = connection.prepareStatement(sql);
 					int t = 0;
@@ -219,11 +239,15 @@ public class JdbcUtils {
 					statement.executeBatch();
 				} catch (SQLException e) {
 					throw new IllegalArgumentException(e);
-				} finally {
-					close(connection, statement, null);
 				}
 				return null;
 			}
+
+			@Override
+			public void close() {
+				JDBCUtils.close(connection, statement, null);
+			}
+
 		});
 	}
 
@@ -240,9 +264,11 @@ public class JdbcUtils {
 			throw new IllegalArgumentException("some params is null");
 		}
 		handleTransaction(connection, transaction, new JdbcExec<Void>() {
+
+			Statement statement = null;
+
 			@Override
 			public Void exec(Connection connection) {
-				Statement statement = null;
 				try {
 					statement = connection.createStatement();
 					int t = 0;
@@ -256,10 +282,13 @@ public class JdbcUtils {
 					statement.executeBatch();
 				} catch (SQLException e) {
 					throw new IllegalArgumentException(e);
-				} finally {
-					close(connection, statement, null);
 				}
 				return null;
+			}
+
+			@Override
+			public void close() {
+				JDBCUtils.close(connection, statement, null);
 			}
 		});
 	}
@@ -393,6 +422,8 @@ public class JdbcUtils {
 			connection.setAutoCommit(isOldOpen);
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(e);
+		} finally {
+			exec.close();
 		}
 		return t;
 	}

@@ -1,4 +1,4 @@
-package cn.emay.utils;
+package cn.emay.utils.encryption;
 
 import java.io.UnsupportedEncodingException;
 
