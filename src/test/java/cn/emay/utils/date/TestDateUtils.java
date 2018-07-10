@@ -5,7 +5,7 @@ import java.util.Date;
 import cn.emay.utils.date.DateUtils;
 
 public class TestDateUtils {
-	
+
 	public static void main(String[] args) {
 		System.out.println("DateUtils.toString");
 		System.out.println(DateUtils.toString(new Date(), "yyyy-MM-dd HH:mm:ss SSS"));
@@ -29,7 +29,7 @@ public class TestDateUtils {
 		System.out.println(DateUtils.subTime(new Date(System.currentTimeMillis() + 60 * 1000), new Date()));
 		System.out.println("DateUtils.getTheMonthFirstDay(date)");
 		System.out.println(DateUtils.toString(DateUtils.getTheMonthFirstDay(new Date()), "yyyy-MM-dd HH:mm:ss SSS"));
-		
+
 	}
 
 }

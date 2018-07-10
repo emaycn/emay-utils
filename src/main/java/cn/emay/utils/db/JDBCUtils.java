@@ -64,8 +64,6 @@ public class JDBCUtils {
 			}
 		});
 	}
-	
-	
 
 	/**
 	 * 单条插入，返回ID

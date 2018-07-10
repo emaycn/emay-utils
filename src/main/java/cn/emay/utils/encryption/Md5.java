@@ -49,7 +49,7 @@ public class Md5 {
 	 * @return
 	 */
 	public static String md5(byte[] bytes) {
-		if (bytes == null || bytes.length == 0){
+		if (bytes == null || bytes.length == 0) {
 			return null;
 		}
 		String s = null;

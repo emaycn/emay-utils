@@ -80,7 +80,7 @@ public class NumberHex {
 	 */
 	public String encode(long number) {
 		if (number <= 0) {
-			return new String(new char[] {chars[0]});
+			return new String(new char[] { chars[0] });
 		}
 		Long rest = number;
 		char[] stac = new char[64];

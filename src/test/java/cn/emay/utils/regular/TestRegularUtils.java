@@ -10,5 +10,5 @@ public class TestRegularUtils {
 	public void test() {
 		RegularUtils.matches("^\\d$", "1");
 	}
-	
+
 }

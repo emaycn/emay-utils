@@ -118,7 +118,7 @@ public class PropertiesUtils {
 		}
 		return value;
 	}
-	
+
 	/**
 	 * 獲取雙精度浮点数的值
 	 * 

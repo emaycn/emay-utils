@@ -32,7 +32,7 @@ public class TestBigDecimalUtils {
 		System.out.println(BigDecimalUtils.mul(new BigDecimal(dou), new BigDecimal(2), scale).doubleValue() + "\t" + (dou * 2));
 
 		System.out.println(BigDecimalUtils.compare(new BigDecimal(dou), new BigDecimal(dou2)));
-		
+
 	}
 
 }

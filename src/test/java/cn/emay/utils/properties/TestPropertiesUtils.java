@@ -9,20 +9,19 @@ public class TestPropertiesUtils {
 
 	@Test
 	public void test() {
-		
+
 		String propertiesClassPath = "test.properties";
-		
+
 		String intkey = "test.int";
 		String stringkey = "test.string";
 		String floatkey = "test.float";
 		String booleankey = "test.boolean";
 		String datekey = "test.date";
-		
-		
+
 		System.out.println("PropertiesUtils.getBigDecimalProperty");
 		System.out.println(PropertiesUtils.getBigDecimalProperty(intkey, propertiesClassPath, new BigDecimal(0)));
 		System.out.println("PropertiesUtils.getBooleanProperty");
-		System.out.println(	PropertiesUtils.getBooleanProperty(booleankey, propertiesClassPath, false));
+		System.out.println(PropertiesUtils.getBooleanProperty(booleankey, propertiesClassPath, false));
 		System.out.println("PropertiesUtils.getDateProperty");
 		System.out.println(PropertiesUtils.getDateProperty(datekey, propertiesClassPath, "yyyy-MM-dd HH:mm:ss SSS", new Date()));
 		System.out.println("PropertiesUtils.getFloatProperty");
@@ -39,14 +38,11 @@ public class TestPropertiesUtils {
 		System.out.println(PropertiesUtils.getProperty(stringkey, propertiesClassPath));
 		System.out.println("PropertiesUtils.getPropertys");
 		System.out.println(PropertiesUtils.getPropertys(propertiesClassPath));
-		
-		
-		
-		
-//		PropertiesUtils.getPropertiesByFile(file);
-//		PropertiesUtils.getPropertiesByFile(propertiesFilePath);
-//		PropertiesUtils.getPropertyByFile(key, propertiesFilePath);
-//		PropertiesUtils.getPropertysByFile(propertiesFilePath);
+
+		// PropertiesUtils.getPropertiesByFile(file);
+		// PropertiesUtils.getPropertiesByFile(propertiesFilePath);
+		// PropertiesUtils.getPropertyByFile(key, propertiesFilePath);
+		// PropertiesUtils.getPropertysByFile(propertiesFilePath);
 	}
 
 }

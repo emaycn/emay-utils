@@ -23,13 +23,15 @@ public class TestJdbcUtils {
 			System.out.println();
 		}
 
-//		conn = DriverManager.getConnection("jdbc:mysql://100.100.10.91:3306/1804", "1804", "1804");
-//
-//		JDBCUtils.execute(conn, "insert into system_auth_oper (auth_code) values ('123')", null, true);
+		// conn = DriverManager.getConnection("jdbc:mysql://100.100.10.91:3306/1804",
+		// "1804", "1804");
+		//
+		// JDBCUtils.execute(conn, "insert into system_auth_oper (auth_code) values
+		// ('123')", null, true);
 
 		conn = DriverManager.getConnection("jdbc:mysql://100.100.10.91:3306/1804", "1804", "1804");
 
-		JDBCUtils.select(conn, "select * from estore_admin", null,new JdbcBeanParser<String>() {
+		JDBCUtils.select(conn, "select * from estore_admin", null, new JdbcBeanParser<String>() {
 
 			@Override
 			public String parser(Map<String, Object> data) {
