@@ -62,7 +62,6 @@ public class ZipUtils {
 
 	/**
 	 * 压缩<br/>
-	 * 不关闭输出流
 	 * 
 	 * @param srcPath
 	 *            待压缩文件/文件夹路径
@@ -87,6 +86,17 @@ public class ZipUtils {
 			zos.flush();
 		} catch (Exception e) {
 			throw new IllegalArgumentException(e);
+		}finally {
+			try {
+				zos.close();
+			} catch (IOException e) {
+				throw new IllegalArgumentException(e);
+			}
+			try {
+				targetOutputStream.close();
+			} catch (IOException e) {
+				throw new IllegalArgumentException(e);
+			}
 		}
 	}
 
@@ -229,7 +239,6 @@ public class ZipUtils {
 
 	/**
 	 * 压缩<br/>
-	 * 不关闭输入输出流
 	 * 
 	 * @param srcInputStream
 	 *            输入流
@@ -256,12 +265,27 @@ public class ZipUtils {
 			zos.flush();
 		} catch (Exception e) {
 			throw new IllegalArgumentException(e);
+		} finally {
+			try {
+				srcInputStream.close();
+			} catch (IOException e) {
+				throw new IllegalArgumentException(e);
+			}
+			try {
+				targetOutputStream.close();
+			} catch (IOException e) {
+				throw new IllegalArgumentException(e);
+			}
+			try {
+				zos.close();
+			} catch (IOException e) {
+				throw new IllegalArgumentException(e);
+			}
 		}
 	}
 
 	/**
 	 * 解压缩<br/>
-	 * 不关闭输入输出流
 	 * 
 	 * @param srcInputStream
 	 *            输入流
@@ -288,6 +312,22 @@ public class ZipUtils {
 			zin.closeEntry();
 		} catch (Exception e) {
 			throw new IllegalArgumentException(e);
+		} finally {
+			try {
+				srcInputStream.close();
+			} catch (IOException e) {
+				throw new IllegalArgumentException(e);
+			}
+			try {
+				targetOutputStream.close();
+			} catch (IOException e) {
+				throw new IllegalArgumentException(e);
+			}
+			try {
+				zin.close();
+			} catch (IOException e) {
+				throw new IllegalArgumentException(e);
+			}
 		}
 	}
 
