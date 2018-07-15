@@ -15,16 +15,9 @@
 		<maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
 		<maven.resources.plugin.version>2.6</maven.resources.plugin.version>
 		<maven.source.plugin.version>2.4</maven.source.plugin.version>
-		<spring.version>4.2.4.RELEASE</spring.version>
-		<slf4j.version>1.7.25</slf4j.version>
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jsp-api</artifactId>
@@ -48,18 +41,6 @@
 			<artifactId>tomcat-jdbc</artifactId>
 			<version>7.0.47</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
