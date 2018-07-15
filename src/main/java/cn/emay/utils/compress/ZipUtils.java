@@ -87,10 +87,12 @@ public class ZipUtils {
 		} catch (Exception e) {
 			throw new IllegalArgumentException(e);
 		}finally {
-			try {
-				zos.close();
-			} catch (IOException e) {
-				throw new IllegalArgumentException(e);
+			if(zos != null) {
+				try {
+					zos.close();
+				} catch (IOException e) {
+					throw new IllegalArgumentException(e);
+				}
 			}
 			try {
 				targetOutputStream.close();
@@ -276,10 +278,12 @@ public class ZipUtils {
 			} catch (IOException e) {
 				throw new IllegalArgumentException(e);
 			}
-			try {
-				zos.close();
-			} catch (IOException e) {
-				throw new IllegalArgumentException(e);
+			if(zos != null) {
+				try {
+					zos.close();
+				} catch (IOException e) {
+					throw new IllegalArgumentException(e);
+				}
 			}
 		}
 	}
@@ -323,10 +327,12 @@ public class ZipUtils {
 			} catch (IOException e) {
 				throw new IllegalArgumentException(e);
 			}
-			try {
-				zin.close();
-			} catch (IOException e) {
-				throw new IllegalArgumentException(e);
+			if(zin != null) {
+				try {
+					zin.close();
+				} catch (IOException e) {
+					throw new IllegalArgumentException(e);
+				}
 			}
 		}
 	}
