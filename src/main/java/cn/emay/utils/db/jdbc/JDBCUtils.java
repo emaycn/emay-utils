@@ -1,4 +1,4 @@
-package cn.emay.utils.db;
+package cn.emay.utils.db.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

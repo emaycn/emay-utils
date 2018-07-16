@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import cn.emay.utils.db.jdbc.JDBCUtils;
+import cn.emay.utils.db.jdbc.JdbcBeanParser;
+
 public class TestJdbcUtils {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {

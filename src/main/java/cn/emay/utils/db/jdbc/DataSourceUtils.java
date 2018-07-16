@@ -1,4 +1,4 @@
-package cn.emay.utils.db;
+package cn.emay.utils.db.jdbc;
 
 import java.sql.SQLException;
 import java.util.List;
