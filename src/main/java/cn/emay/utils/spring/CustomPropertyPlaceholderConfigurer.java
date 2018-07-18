@@ -1,4 +1,4 @@
-package cn.emay.utils.srping;
+package cn.emay.utils.spring;
 
 import java.util.Properties;
 
