@@ -6,6 +6,12 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+/**
+ * 数据库连接池工具
+ * 
+ * @author Frank
+ *
+ */
 public class DataSourceUtils {
 
 	/**

@@ -3,6 +3,12 @@ package cn.emay.utils.web.filters;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
+/**
+ * request转化器
+ * 
+ * @author Frank
+ *
+ */
 public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
 	public XssHttpServletRequestWrapper(HttpServletRequest servletRequest) {
