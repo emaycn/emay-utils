@@ -11,7 +11,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * XSS防御 可以指定排除的URL
+ * XSS防御<br/>
+ * 可以指定排除的URL
  * 
  * @author Frank
  *
@@ -20,6 +21,9 @@ public class XssFilter implements Filter {
 
 	FilterConfig filterConfig = null;
 
+	/**
+	 * 排除的URL
+	 */
 	private String excludedUrls;
 
 	private String[] excludedPageArray;
