@@ -11,7 +11,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JDBCUtils {
+/**
+ * Jdbc工具类
+ * 
+ * @author Frank
+ *
+ */
+public class JdbcUtils {
 
 	/**
 	 * 批量插入，返回id
@@ -60,7 +66,7 @@ public class JDBCUtils {
 
 			@Override
 			public void close() {
-				JDBCUtils.close(connection, statement, rs);
+				JdbcUtils.close(connection, statement, rs);
 			}
 		});
 	}
@@ -106,7 +112,7 @@ public class JDBCUtils {
 
 			@Override
 			public void close() {
-				JDBCUtils.close(connection, statement, rs);
+				JdbcUtils.close(connection, statement, rs);
 			}
 		});
 	}
@@ -172,7 +178,7 @@ public class JDBCUtils {
 
 			@Override
 			public void close() {
-				JDBCUtils.close(connection, statement, null);
+				JdbcUtils.close(connection, statement, null);
 			}
 		});
 	}
@@ -243,7 +249,7 @@ public class JDBCUtils {
 
 			@Override
 			public void close() {
-				JDBCUtils.close(connection, statement, null);
+				JdbcUtils.close(connection, statement, null);
 			}
 
 		});
@@ -286,7 +292,7 @@ public class JDBCUtils {
 
 			@Override
 			public void close() {
-				JDBCUtils.close(connection, statement, null);
+				JdbcUtils.close(connection, statement, null);
 			}
 		});
 	}
@@ -315,7 +321,7 @@ public class JDBCUtils {
 			ResultSetMetaData meta = rs.getMetaData();
 			int length = meta.getColumnCount();
 			while (rs.next()) {
-				Map<String, Object> map = new HashMap<String, Object>();
+				Map<String, Object> map = new HashMap<String, Object>(length);
 				for (int i = 1; i <= length; i++) {
 					map.put(meta.getColumnName(i), rs.getObject(i));
 				}
@@ -338,7 +344,7 @@ public class JDBCUtils {
 	 * @return
 	 */
 	public static Map<String, Object> selectUnique(Connection connection, String sql, Object[] params) {
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>(32);
 		PreparedStatement statement = null;
 		ResultSet rs = null;
 		try {

@@ -8,7 +8,7 @@ package cn.emay.utils.encryption;
  */
 public class Number62 {
 
-	private static final NumberHex hex = new NumberHex("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray());
+	private static final NumberHex HEX = new NumberHex("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray());
 
 	/**
 	 * 转换为62进制
@@ -17,7 +17,7 @@ public class Number62 {
 	 * @return
 	 */
 	public static String encode(long number) {
-		return hex.encode(number);
+		return HEX.encode(number);
 	}
 
 	/**
@@ -27,7 +27,7 @@ public class Number62 {
 	 * @return
 	 */
 	public static long decode(String hex62) {
-		return hex.decode(hex62);
+		return HEX.decode(hex62);
 	}
 
 }

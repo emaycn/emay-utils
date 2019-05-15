@@ -24,7 +24,7 @@ public class CommandUtils {
 	 *         1002 JAVA调用外部命令报错<br/>
 	 */
 	public static CommandResult execCommand(String[] commands) {
-		return execCommand(commands, 0l);
+		return execCommand(commands, 0L);
 	}
 
 	/**

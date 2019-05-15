@@ -3,15 +3,20 @@ package cn.emay.utils.compress;
 import org.junit.Assert;
 import org.junit.Test;
 
-import cn.emay.utils.compress.GZIPUtils;
+import cn.emay.utils.compress.GzipUtils;
 
-public class TestGzipUtils {
+/**
+ * 
+ * @author Frank
+ *
+ */
+public class GzipUtilsTest {
 
 	@Test
 	public void testGizp() {
 		String st = "sfdsfk203ois_+!O@_#)#!*$(^#$(&@#)__+@";
-		byte[] b = GZIPUtils.compress(st.getBytes());
-		b = GZIPUtils.decompress(b);
+		byte[] b = GzipUtils.compress(st.getBytes());
+		b = GzipUtils.decompress(b);
 		Assert.assertEquals(st, new String(b));
 
 	}

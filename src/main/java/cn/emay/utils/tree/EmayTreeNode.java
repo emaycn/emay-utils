@@ -97,9 +97,10 @@ public class EmayTreeNode<K, T> {
 	 */
 	public boolean addChild(EmayTreeNode<K, T> child, boolean isCover) {
 		if (children == null) {
-			children = new HashMap<K, EmayTreeNode<K, T>>();
+			children = new HashMap<K, EmayTreeNode<K, T>>(8);
 		}
-		if ((children.containsKey(child.id) && isCover) || (!children.containsKey(child.id))) {
+		boolean isCo = (children.containsKey(child.id) && isCover) || (!children.containsKey(child.id));
+		if (isCo) {
 			children.put(child.id, child);
 			child.parent = this;
 			return true;

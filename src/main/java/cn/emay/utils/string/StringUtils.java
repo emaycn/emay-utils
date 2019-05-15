@@ -75,7 +75,7 @@ public class StringUtils {
 	 * @return
 	 */
 	public static boolean isBool(String str) {
-		return !isBlank(str) && (str.trim().equals("true") || str.trim().equals("false"));
+		return !isBlank(str) && ("true".equals(str.trim()) || "false".equals(str.trim()));
 	}
 
 	/**

@@ -24,7 +24,7 @@ public class DataSourceUtils {
 	 */
 	public static List<Object> saveBatchWithId(DataSource dataSource, String sql, List<Object[]> params) {
 		try {
-			return JDBCUtils.saveBatchWithId(dataSource.getConnection(), sql, params);
+			return JdbcUtils.saveBatchWithId(dataSource.getConnection(), sql, params);
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(e);
 		}
@@ -40,7 +40,7 @@ public class DataSourceUtils {
 	 */
 	public static Object saveWithId(DataSource dataSource, String sql, Object[] params) {
 		try {
-			return JDBCUtils.saveWithId(dataSource.getConnection(), sql, params);
+			return JdbcUtils.saveWithId(dataSource.getConnection(), sql, params);
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(e);
 		}
@@ -56,7 +56,7 @@ public class DataSourceUtils {
 	 */
 	public static void upate(DataSource dataSource, String sql, Object[] params) {
 		try {
-			JDBCUtils.upate(dataSource.getConnection(), sql, params);
+			JdbcUtils.upate(dataSource.getConnection(), sql, params);
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(e);
 		}
@@ -72,7 +72,7 @@ public class DataSourceUtils {
 	 */
 	public static void save(DataSource dataSource, String sql, Object[] params) {
 		try {
-			JDBCUtils.save(dataSource.getConnection(), sql, params);
+			JdbcUtils.save(dataSource.getConnection(), sql, params);
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(e);
 		}
@@ -89,7 +89,7 @@ public class DataSourceUtils {
 	 */
 	public static void execute(DataSource dataSource, String sql, Object[] params, boolean transaction) {
 		try {
-			JDBCUtils.execute(dataSource.getConnection(), sql, params, transaction);
+			JdbcUtils.execute(dataSource.getConnection(), sql, params, transaction);
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(e);
 		}
@@ -105,7 +105,7 @@ public class DataSourceUtils {
 	 */
 	public static void updateBatch(final DataSource dataSource, final String sql, final List<Object[]> params) {
 		try {
-			JDBCUtils.updateBatch(dataSource.getConnection(), sql, params);
+			JdbcUtils.updateBatch(dataSource.getConnection(), sql, params);
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(e);
 		}
@@ -121,7 +121,7 @@ public class DataSourceUtils {
 	 */
 	public static void saveBatch(final DataSource dataSource, final String sql, final List<Object[]> params) {
 		try {
-			JDBCUtils.saveBatch(dataSource.getConnection(), sql, params);
+			JdbcUtils.saveBatch(dataSource.getConnection(), sql, params);
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(e);
 		}
@@ -138,7 +138,7 @@ public class DataSourceUtils {
 	 */
 	public static void executeBatch(DataSource dataSource, String sql, List<Object[]> params, boolean transaction) {
 		try {
-			JDBCUtils.executeBatch(dataSource.getConnection(), sql, params, transaction);
+			JdbcUtils.executeBatch(dataSource.getConnection(), sql, params, transaction);
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(e);
 		}
@@ -154,7 +154,7 @@ public class DataSourceUtils {
 	 */
 	public static void executeBatch(DataSource dataSource, boolean transaction, String... sqls) {
 		try {
-			JDBCUtils.executeBatch(dataSource.getConnection(), transaction, sqls);
+			JdbcUtils.executeBatch(dataSource.getConnection(), transaction, sqls);
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(e);
 		}
@@ -170,7 +170,7 @@ public class DataSourceUtils {
 	 */
 	public static List<Map<String, Object>> select(DataSource dataSource, String sql, Object[] params) {
 		try {
-			return JDBCUtils.select(dataSource.getConnection(), sql, params);
+			return JdbcUtils.select(dataSource.getConnection(), sql, params);
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(e);
 		}
@@ -186,7 +186,7 @@ public class DataSourceUtils {
 	 */
 	public static Map<String, Object> selectUnique(DataSource dataSource, String sql, Object[] params) {
 		try {
-			return JDBCUtils.selectUnique(dataSource.getConnection(), sql, params);
+			return JdbcUtils.selectUnique(dataSource.getConnection(), sql, params);
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(e);
 		}
@@ -203,7 +203,7 @@ public class DataSourceUtils {
 	 */
 	public static <T> T selectUnique(DataSource dataSource, String sql, Object[] params, JdbcBeanParser<T> bean) {
 		try {
-			return JDBCUtils.selectUnique(dataSource.getConnection(), sql, params, bean);
+			return JdbcUtils.selectUnique(dataSource.getConnection(), sql, params, bean);
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(e);
 		}
@@ -220,7 +220,7 @@ public class DataSourceUtils {
 	 */
 	public static <T> List<T> select(DataSource dataSource, String sql, Object[] params, JdbcBeanParser<T> bean) {
 		try {
-			return JDBCUtils.select(dataSource.getConnection(), sql, params, bean);
+			return JdbcUtils.select(dataSource.getConnection(), sql, params, bean);
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(e);
 		}

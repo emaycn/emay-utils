@@ -5,6 +5,12 @@ import java.util.UUID;
 
 import cn.emay.utils.date.DateUtils;
 
+/**
+ * 唯一ID生成器
+ * 
+ * @author Frank
+ *
+ */
 public class OnlyIdGenerator {
 
 	/**
@@ -20,7 +26,7 @@ public class OnlyIdGenerator {
 	/**
 	 * ID 序列计算时间
 	 */
-	private static long ID_END_MILLIS = 0l;
+	private static long ID_END_MILLIS = 0L;
 
 	/**
 	 * 生成18位的唯一数字ID<br/>

@@ -12,12 +12,14 @@ import javax.crypto.spec.SecretKeySpec;
  * @author Frank
  *
  */
-public class AES {
+public class Aes {
 
 	/**
 	 * 算法：AES/ECB/PKCS5Padding
 	 */
 	public final static String ALGORITHM_AEPP = "AES/ECB/PKCS5Padding";
+	
+	public final static String PKCS7PADDING = "PKCS7Padding";
 
 	/**
 	 * AES加密
@@ -126,7 +128,7 @@ public class AES {
 		}
 		try {
 			Cipher cipher = null;
-			if (algorithm.endsWith("PKCS7Padding")) {
+			if (algorithm.endsWith(PKCS7PADDING)) {
 				cipher = Cipher.getInstance(algorithm, "BC");
 			} else {
 				cipher = Cipher.getInstance(algorithm);
@@ -155,7 +157,7 @@ public class AES {
 		}
 		try {
 			Cipher cipher = null;
-			if (algorithm.endsWith("PKCS7Padding")) {
+			if (algorithm.endsWith(PKCS7PADDING)) {
 				cipher = Cipher.getInstance(algorithm, "BC");
 			} else {
 				cipher = Cipher.getInstance(algorithm);
@@ -187,7 +189,7 @@ public class AES {
 		}
 		try {
 			Cipher cipher = null;
-			if (algorithm.endsWith("PKCS7Padding")) {
+			if (algorithm.endsWith(PKCS7PADDING)) {
 				cipher = Cipher.getInstance(algorithm, "BC");
 			} else {
 				cipher = Cipher.getInstance(algorithm);
@@ -219,7 +221,7 @@ public class AES {
 		}
 		try {
 			Cipher cipher = null;
-			if (algorithm.endsWith("PKCS7Padding")) {
+			if (algorithm.endsWith(PKCS7PADDING)) {
 				cipher = Cipher.getInstance(algorithm, "BC");
 			} else {
 				cipher = Cipher.getInstance(algorithm);

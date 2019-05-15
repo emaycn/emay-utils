@@ -1,6 +1,10 @@
 package cn.emay.utils.encryption;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -114,4 +118,72 @@ public class Md5 {
 		return md5(bytes).substring(8, 24);
 	}
 
+	/***
+	 * 获取文件md5
+	 * 
+	 * @param filepath
+	 *            文件路径
+	 */
+	public static String md5FileFor16(String filepath) {
+		String md5 = md5File(filepath);
+		return md5 == null ? null : md5.substring(8, 24);
+	}
+
+	/**
+	 * 获取文件md5
+	 * 
+	 * @param file
+	 */
+	public static String md5FileFor16(File file) {
+		String md5 = md5File(file);
+		return md5 == null ? null : md5.substring(8, 24);
+	}
+
+	/***
+	 * 获取文件md5
+	 * 
+	 * @param filepath
+	 *            文件路径
+	 */
+	public static String md5File(String filepath) {
+		if (filepath == null) {
+			return null;
+		}
+		return md5File(new File(filepath));
+	}
+
+	/**
+	 * 获取文件md5
+	 * 
+	 * @param file
+	 */
+	public static String md5File(File file) {
+		if (file == null) {
+			return null;
+		}
+		String value = null;
+		FileInputStream in = null;
+		try {
+			MessageDigest digest = MessageDigest.getInstance("MD5");
+			in = new FileInputStream(file);
+			byte buffer[] = new byte[2048];
+			int len;
+			while ((len = in.read(buffer, 0, 1024)) != -1) {
+				digest.update(buffer, 0, len);
+			}
+			BigInteger bigInt = new BigInteger(1, digest.digest());
+			value = bigInt.toString(16);
+		} catch (Exception e) {
+			throw new IllegalArgumentException(e);
+		} finally {
+			if (null != in) {
+				try {
+					in.close();
+				} catch (IOException e) {
+					throw new IllegalArgumentException(e);
+				}
+			}
+		}
+		return value == null ? null : value.toUpperCase();
+	}
 }

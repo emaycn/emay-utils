@@ -3,7 +3,12 @@ package cn.emay.utils.string;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestStringUtils {
+/**
+* 
+* @author Frank
+*
+*/
+public class StringUtilsTest {
 
 	@Test
 	public void test() {

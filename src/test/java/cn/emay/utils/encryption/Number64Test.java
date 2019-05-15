@@ -7,7 +7,12 @@ import org.junit.Test;
 
 import cn.emay.utils.encryption.Number64;
 
-public class TestNumber64 {
+/**
+* 
+* @author Frank
+*
+*/
+public class Number64Test {
 
 	@Test
 	public void testNumber64() throws UnsupportedEncodingException {

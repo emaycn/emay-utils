@@ -2,7 +2,12 @@ package cn.emay.utils.network;
 
 import java.net.SocketException;
 
-public class TestNetworkCardUtils {
+/**
+* 
+* @author Frank
+*
+*/
+public class NetworkCardUtilsTest {
 
 	public static void main(String args[]) throws SocketException {
 		System.out.println(NetworkCardUtils.getLocalFirstIPv4Address());

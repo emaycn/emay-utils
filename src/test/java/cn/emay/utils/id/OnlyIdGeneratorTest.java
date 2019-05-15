@@ -1,6 +1,11 @@
 package cn.emay.utils.id;
 
-public class TestOnlyIdGenerator {
+/**
+* 
+* @author Frank
+*
+*/
+public class OnlyIdGeneratorTest {
 
 	public static void main(String[] args) {
 		System.out.println(OnlyIdGenerator.genOnlyBId("123"));

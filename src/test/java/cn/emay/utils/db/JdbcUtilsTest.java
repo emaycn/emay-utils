@@ -6,10 +6,15 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-import cn.emay.utils.db.jdbc.JDBCUtils;
+import cn.emay.utils.db.jdbc.JdbcUtils;
 import cn.emay.utils.db.jdbc.JdbcBeanParser;
 
-public class TestJdbcUtils {
+/**
+* 
+* @author Frank
+*
+*/
+public class JdbcUtilsTest {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
@@ -17,7 +22,7 @@ public class TestJdbcUtils {
 
 		Connection conn = DriverManager.getConnection("jdbc:mysql://100.100.10.91:3306/1804", "1804", "1804");
 
-		List<Map<String, Object>> datas = JDBCUtils.select(conn, "select * from estore_admin", null);
+		List<Map<String, Object>> datas = JdbcUtils.select(conn, "select * from estore_admin", null);
 
 		for (Map<String, Object> data : datas) {
 			for (String key : data.keySet()) {
@@ -34,7 +39,7 @@ public class TestJdbcUtils {
 
 		conn = DriverManager.getConnection("jdbc:mysql://100.100.10.91:3306/1804", "1804", "1804");
 
-		JDBCUtils.select(conn, "select * from estore_admin", null, new JdbcBeanParser<String>() {
+		JdbcUtils.select(conn, "select * from estore_admin", null, new JdbcBeanParser<String>() {
 
 			@Override
 			public String parser(Map<String, Object> data) {

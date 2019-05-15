@@ -7,7 +7,6 @@ import java.util.Date;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import cn.emay.utils.date.DateUtils;
 
@@ -31,10 +30,11 @@ public class RequestUtils {
 	 */
 	public static String getParameter(HttpServletRequest request, String name) {
 		String temp = request.getParameter(name);
-		if (temp == null || temp.trim().equals(""))
+		if (temp == null || temp.trim().equals("")) {
 			temp = null;
-		else
+		} else {
 			temp = temp.trim();
+		}
 		return temp;
 	}
 
@@ -66,8 +66,9 @@ public class RequestUtils {
 	 */
 	public static long getLongParameter(HttpServletRequest request, String name, long defaultNum) {
 		String temp = request.getParameter(name);
-		if (temp == null || temp.trim().equals(""))
+		if (temp == null || temp.trim().equals("")) {
 			return defaultNum;
+		}
 		long num = defaultNum;
 		try {
 			num = Long.valueOf(temp.trim());
@@ -86,12 +87,15 @@ public class RequestUtils {
 	 */
 	public static boolean getBooleanParameter(HttpServletRequest request, String name, boolean defaultValue) {
 		String temp = request.getParameter(name);
-		if (temp == null || temp.trim().equals(""))
+		if (temp == null || temp.trim().equals("")) {
 			return defaultValue;
-		if (temp.equalsIgnoreCase("true") || temp.equalsIgnoreCase("on") || temp.equalsIgnoreCase("1"))
+		}
+		if (temp.equalsIgnoreCase("true") || temp.equalsIgnoreCase("on") || temp.equalsIgnoreCase("1")) {
 			return true;
-		if (temp.equalsIgnoreCase("false") || temp.equalsIgnoreCase("off") || temp.equalsIgnoreCase("0"))
+		}
+		if (temp.equalsIgnoreCase("false") || temp.equalsIgnoreCase("off") || temp.equalsIgnoreCase("0")) {
 			return false;
+		}
 		return defaultValue;
 	}
 
@@ -105,8 +109,9 @@ public class RequestUtils {
 	 */
 	public static int getIntParameter(HttpServletRequest request, String name, int defaultNum) {
 		String temp = request.getParameter(name);
-		if (temp == null || temp.trim().equals(""))
+		if (temp == null || temp.trim().equals("")) {
 			return defaultNum;
+		}
 		int num = defaultNum;
 		try {
 			num = Integer.valueOf(temp);
@@ -125,8 +130,9 @@ public class RequestUtils {
 	 */
 	public static float getFloatParameter(HttpServletRequest request, String name, float defaultNum) {
 		String temp = request.getParameter(name);
-		if (temp == null || temp.trim().equals(""))
+		if (temp == null || temp.trim().equals("")) {
 			return defaultNum;
+		}
 		float num = defaultNum;
 		try {
 			num = Float.valueOf(temp);
@@ -145,8 +151,9 @@ public class RequestUtils {
 	 */
 	public static double getDoubleParameter(HttpServletRequest request, String name, double defaultNum) {
 		String temp = request.getParameter(name);
-		if (temp == null || temp.trim().equals(""))
+		if (temp == null || temp.trim().equals("")) {
 			return defaultNum;
+		}
 		double num = defaultNum;
 		try {
 			num = Double.valueOf(temp);
@@ -167,8 +174,9 @@ public class RequestUtils {
 	public static Date getDateParameter(HttpServletRequest request, String name, String format, Date defaultValue) {
 		String temp = request.getParameter(name);
 		Date date = DateUtils.parseDate(temp, format);
-		if (date == null)
+		if (date == null) {
 			date = defaultValue;
+		}
 		return date;
 	}
 
@@ -261,28 +269,6 @@ public class RequestUtils {
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * 加入Cookie
-	 */
-	public static void addCookie(HttpServletResponse response, String name, String value, int time) {
-		Cookie cookie = new Cookie(name, value);
-		if (time >= 0) {
-			cookie.setMaxAge(time);
-		}
-		response.addCookie(cookie);
-	}
-
-	/**
-	 * 删除Cookie
-	 */
-	public static void deleteCookie(HttpServletRequest request, HttpServletResponse response, String name) {
-		Cookie cookie = findCookie(request, name);
-		if (cookie != null) {
-			cookie.setMaxAge(0);
-			response.addCookie(cookie);
-		}
 	}
 
 	/**

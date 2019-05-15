@@ -7,7 +7,12 @@ import org.junit.Test;
 
 import cn.emay.utils.encryption.NumberHex;
 
-public class TestNumberHex {
+/**
+* 
+* @author Frank
+*
+*/
+public class NumberHexTest {
 
 	@Test
 	public void testNumberHex() throws UnsupportedEncodingException {

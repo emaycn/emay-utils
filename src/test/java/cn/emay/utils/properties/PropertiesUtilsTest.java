@@ -5,7 +5,12 @@ import java.util.Date;
 
 import org.junit.Test;
 
-public class TestPropertiesUtils {
+/**
+* 
+* @author Frank
+*
+*/
+public class PropertiesUtilsTest {
 
 	@Test
 	public void test() {
@@ -31,7 +36,7 @@ public class TestPropertiesUtils {
 		System.out.println("PropertiesUtils.getIntProperty");
 		System.out.println(PropertiesUtils.getIntProperty(intkey, propertiesClassPath, 1));
 		System.out.println("PropertiesUtils.getLongProperty");
-		System.out.println(PropertiesUtils.getLongProperty(intkey, propertiesClassPath, 1l));
+		System.out.println(PropertiesUtils.getLongProperty(intkey, propertiesClassPath, 1L));
 		System.out.println("PropertiesUtils.getProperties");
 		System.out.println(PropertiesUtils.getProperties(propertiesClassPath));
 		System.out.println("PropertiesUtils.getProperty");

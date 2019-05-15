@@ -1,5 +1,11 @@
 package cn.emay.utils.number;
 
+/**
+ * int工具类
+ * 
+ * @author Frank
+ *
+ */
 public class IntegerUtils {
 
 	/**

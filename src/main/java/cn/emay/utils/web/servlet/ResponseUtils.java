@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -13,6 +14,36 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 public class ResponseUtils {
+
+	/**
+	 * 加入Cookie
+	 */
+	public static void addCookie(HttpServletResponse response, String name, String value, int maxAge) {
+		addCookie(response, name, value, null, null, null, 0, maxAge, false);
+	}
+
+	/**
+	 * 加入Cookie
+	 */
+	public static void addCookie(HttpServletResponse response, String name, String value, String comment, String domain, String path, int version, int maxAge, boolean secure) {
+		Cookie cookie = new Cookie(name, value);
+		cookie.setComment(comment);
+		cookie.setDomain(domain);
+		cookie.setPath(path);
+		cookie.setSecure(secure);
+		cookie.setVersion(version);
+		cookie.setMaxAge(maxAge);
+		response.addCookie(cookie);
+	}
+
+	/**
+	 * 删除Cookie
+	 */
+	public static void deleteCookie(HttpServletResponse response, String name) {
+		Cookie cookie = new Cookie(name, null);
+		cookie.setMaxAge(0);
+		response.addCookie(cookie);
+	}
 
 	/**
 	 * 输出字节流
@@ -32,8 +63,9 @@ public class ResponseUtils {
 			throw new RuntimeException(e);
 		} finally {
 			try {
-				if (out != null)
+				if (out != null) {
 					out.close();
+				}
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}

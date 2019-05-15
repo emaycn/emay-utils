@@ -7,7 +7,12 @@ import org.junit.Test;
 
 import cn.emay.utils.encryption.Number62;
 
-public class TestNumber62 {
+/**
+* 
+* @author Frank
+*
+*/
+public class Number62Test {
 
 	@Test
 	public void testNumber62() throws UnsupportedEncodingException {

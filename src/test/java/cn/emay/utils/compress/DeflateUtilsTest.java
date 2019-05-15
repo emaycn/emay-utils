@@ -5,7 +5,12 @@ import org.junit.Test;
 
 import cn.emay.utils.compress.DeflateUtils;
 
-public class TestDeflateUtils {
+/**
+ * 
+ * @author Frank
+ *
+ */
+public class DeflateUtilsTest {
 
 	@Test
 	public void testGizp() {

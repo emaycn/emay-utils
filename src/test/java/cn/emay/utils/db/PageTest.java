@@ -11,7 +11,12 @@ import org.mockito.Mockito;
 
 import cn.emay.utils.db.common.Page;
 
-public class TestPage {
+/**
+* 
+* @author Frank
+*
+*/
+public class PageTest {
 
 	private int currentPageNum = 5;
 
@@ -111,7 +116,7 @@ public class TestPage {
 	}
 
 	@Test()
-	public void TestSetNumByStartAndLimit() {
+	public void testSetNumByStartAndLimit() {
 		Page<?> page = new Page<>();
 		page.setNumByStartAndLimit(start, limit, totalCount);
 		Assert.assertEquals(page.getCurrentPageNum(), currentPageNum);

@@ -91,10 +91,12 @@ public class PropertiesUtils {
 			return defaultValue;
 		}
 		String valuep = properties.getProperty(key);
-		if (valuep.equalsIgnoreCase("true") || valuep.equalsIgnoreCase("on") || valuep.equalsIgnoreCase("1"))
+		if (valuep.equalsIgnoreCase("true") || valuep.equalsIgnoreCase("on") || valuep.equalsIgnoreCase("1")) {
 			return true;
-		if (valuep.equalsIgnoreCase("false") || valuep.equalsIgnoreCase("off") || valuep.equalsIgnoreCase("0"))
+		}
+		if (valuep.equalsIgnoreCase("false") || valuep.equalsIgnoreCase("off") || valuep.equalsIgnoreCase("0")) {			
 			return false;
+		}
 		return defaultValue;
 	}
 
@@ -155,8 +157,9 @@ public class PropertiesUtils {
 			return defaultValue;
 		}
 		Date date = DateUtils.parseDate(properties.getProperty(key), format);
-		if (date == null)
+		if (date == null) {			
 			date = defaultValue;
+		}
 		return date;
 	}
 
@@ -188,7 +191,7 @@ public class PropertiesUtils {
 	 * @return
 	 */
 	public static Map<String, String> getPropertys(String propertiesClassPath) {
-		Map<String, String> map = new ConcurrentHashMap<String, String>();
+		Map<String, String> map = new ConcurrentHashMap<String, String>(32);
 		Properties properties = getProperties(propertiesClassPath);
 		if (properties == null) {
 			return map;
@@ -312,7 +315,7 @@ public class PropertiesUtils {
 	 * @return
 	 */
 	public static Map<String, String> getPropertysByFile(String propertiesFilePath) {
-		Map<String, String> map = new ConcurrentHashMap<String, String>();
+		Map<String, String> map = new ConcurrentHashMap<String, String>(32);
 		Properties properties = getPropertiesByFile(propertiesFilePath);
 		if (properties == null) {
 			return map;

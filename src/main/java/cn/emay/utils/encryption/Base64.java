@@ -10,10 +10,10 @@ import java.io.UnsupportedEncodingException;
  */
 public class Base64 {
 
-	private final static char base64Code[] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd',
+	private final static char BASE64CODE[] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd',
 			'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/', };
 
-	private final static byte base64Decode[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+	private final static byte BASE64DECODE[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
 			-1, -1, -1, -1, -1, 62, -1, 63, -1, 63, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -1, -1, -1, 0, -1, -1, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
 			23, 24, 25, -1, -1, -1, -1, -1, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, -1, -1, -1, -1, -1, };
 
@@ -62,10 +62,10 @@ public class Base64 {
 		for (int i = 0; i < content.length; i++) {
 			code |= (content[i] << (16 - i % 3 * 8)) & (0xff << (16 - i % 3 * 8));
 			if (i % 3 == 2 || i == content.length - 1) {
-				sb.append(base64Code[(code & 0xfc0000) >>> 18]);
-				sb.append(base64Code[(code & 0x3f000) >>> 12]);
-				sb.append(base64Code[(code & 0xfc0) >>> 6]);
-				sb.append(base64Code[code & 0x3f]);
+				sb.append(BASE64CODE[(code & 0xfc0000) >>> 18]);
+				sb.append(BASE64CODE[(code & 0x3f000) >>> 12]);
+				sb.append(BASE64CODE[(code & 0xfc0) >>> 6]);
+				sb.append(BASE64CODE[code & 0x3f]);
 				code = 0;
 			}
 		}
@@ -139,7 +139,7 @@ public class Base64 {
 			ch2 = code.charAt(i + 1);
 			ch3 = code.charAt(i + 2);
 			ch4 = code.charAt(i + 3);
-			int tmp = (base64Decode[ch1] << 18) | (base64Decode[ch2] << 12) | (base64Decode[ch3] << 6) | (base64Decode[ch4]);
+			int tmp = (BASE64DECODE[ch1] << 18) | (BASE64DECODE[ch2] << 12) | (BASE64DECODE[ch3] << 6) | (BASE64DECODE[ch4]);
 			ret[j] = (byte) ((tmp & 0xff0000) >> 16);
 			if (i < len - 4) {
 				ret[j + 1] = (byte) ((tmp & 0x00ff00) >> 8);

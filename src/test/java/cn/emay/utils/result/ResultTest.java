@@ -1,6 +1,11 @@
 package cn.emay.utils.result;
 
-public class TestResult {
+/**
+* 
+* @author Frank
+*
+*/
+public class ResultTest {
 
 	public static void main(String[] args) {
 		Result r = Result.badResult("123");

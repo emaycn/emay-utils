@@ -1,6 +1,11 @@
 package cn.emay.utils.regular;
 
-public class TestRegularUtils {
+/**
+* 
+* @author Frank
+*
+*/
+public class RegularUtilsTest {
 
 	public static void main(String[] args) {
 		boolean flag = RegularUtils.matches("^\\d$", "1");

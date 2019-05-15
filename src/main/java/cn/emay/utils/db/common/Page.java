@@ -16,17 +16,30 @@ public class Page<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final String DATA_LIST = "list";// 数据列表Key
-
-	public static final String TOTAL_COUNT = "totalCount";// 数据总数Key
-
-	public static final String START = "start";// 数据起始位置Key
-
-	public static final String LIMIT = "limit";// 每页数据数量Key
-
-	public static final String CURRENT_PAGE = "currentPage";// 当前页Key
-
-	public static final String TOTAL_PAGE = "totalPage";// 总页数Key
+	/**
+	 * 数据列表Key
+	 */
+	public static final String DATA_LIST = "list";
+	/**
+	 * 数据总数Key
+	 */
+	public static final String TOTAL_COUNT = "totalCount";
+	/**
+	 * 数据起始位置Key
+	 */
+	public static final String START = "start";
+	/**
+	 * 每页数据数量Key
+	 */
+	public static final String LIMIT = "limit";
+	/**
+	 * 当前页Key
+	 */
+	public static final String CURRENT_PAGE = "currentPage";
+	/**
+	 * 总页数Key
+	 */
+	public static final String TOTAL_PAGE = "totalPage";
 
 	/**
 	 * 数据列表
@@ -145,7 +158,7 @@ public class Page<T> implements Serializable {
 	 * @return
 	 */
 	public Map<String, Object> toMap() {
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>(6);
 		map.put(LIMIT, this.getLimit());
 		map.put(START, this.getStart());
 		map.put(TOTAL_COUNT, this.getTotalCount());

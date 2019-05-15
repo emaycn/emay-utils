@@ -7,7 +7,12 @@ import org.junit.Test;
 
 import cn.emay.utils.encryption.Md5;
 
-public class TestMd5 {
+/**
+* 
+* @author Frank
+*
+*/
+public class Md5Test {
 
 	@Test
 	public void testMd5() throws UnsupportedEncodingException {

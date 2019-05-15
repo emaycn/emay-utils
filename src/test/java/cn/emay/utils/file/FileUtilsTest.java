@@ -4,7 +4,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-public class TestFileUtils {
+/**
+* 
+* @author Frank
+*
+*/
+public class FileUtilsTest {
 
 	public static void main(String[] args) throws FileNotFoundException {
 

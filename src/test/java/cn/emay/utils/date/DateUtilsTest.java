@@ -4,7 +4,12 @@ import java.util.Date;
 
 import cn.emay.utils.date.DateUtils;
 
-public class TestDateUtils {
+/**
+* 
+* @author Frank
+*
+*/
+public class DateUtilsTest {
 
 	public static void main(String[] args) {
 		System.out.println("DateUtils.toString");

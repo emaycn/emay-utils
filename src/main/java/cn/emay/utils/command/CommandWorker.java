@@ -70,7 +70,7 @@ public class CommandWorker extends Thread {
 	public CommandResult runCommand() {
 		try {
 			super.start();
-			if (timeout > 0l) {
+			if (timeout > 0L) {
 				this.join(timeout);
 				if (this.isAlive() && exitCode == CommandResult.CODE_SUCCESS) {
 					exitCode = CommandResult.CODE_TIMEOUT;
@@ -86,6 +86,7 @@ public class CommandWorker extends Thread {
 		return new CommandResult(exitCode, message, errormessage);
 	}
 
+	@Override
 	public void run() {
 		try {
 			Process process = builder.start();

@@ -6,7 +6,12 @@ import org.junit.Test;
 
 import cn.emay.utils.number.BigDecimalUtils;
 
-public class TestBigDecimalUtils {
+/**
+* 
+* @author Frank
+*
+*/
+public class BigDecimalUtilsTest {
 
 	@Test
 	public void testD() {

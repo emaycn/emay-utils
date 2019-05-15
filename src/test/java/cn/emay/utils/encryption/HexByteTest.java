@@ -7,7 +7,12 @@ import org.junit.Test;
 
 import cn.emay.utils.encryption.HexByte;
 
-public class TestHexByte {
+/**
+* 
+* @author Frank
+*
+*/
+public class HexByteTest {
 
 	@Test
 	public void testBHexByte() throws UnsupportedEncodingException {

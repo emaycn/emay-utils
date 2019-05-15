@@ -103,15 +103,15 @@ public class NumberHex {
 	 */
 	public long decode(String inhex) {
 		if (inhex == null || inhex.trim().length() == 0) {
-			return 0l;
+			return 0L;
 		}
-		long result = 0l;
+		long result = 0L;
 		char[] chars = inhex.toCharArray();
 		for (int i = 0; i < chars.length; i++) {
 			char cha = chars[i];
 			Integer ind = getIndexChar(cha);
 			if (ind == null) {
-				return 0l;
+				return 0L;
 			}
 			result += Math.pow(hex, chars.length - i - 1) * ind;
 		}

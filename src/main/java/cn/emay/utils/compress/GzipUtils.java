@@ -12,7 +12,7 @@ import java.util.zip.GZIPOutputStream;
  * @author Frank
  *
  */
-public class GZIPUtils {
+public class GzipUtils {
 
 	/**
 	 * 数据压缩
