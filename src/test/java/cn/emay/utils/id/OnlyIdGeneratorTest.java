@@ -1,10 +1,10 @@
 package cn.emay.utils.id;
 
 /**
-* 
-* @author Frank
-*
-*/
+ * 
+ * @author Frank
+ *
+ */
 public class OnlyIdGeneratorTest {
 
 	public static void main(String[] args) {

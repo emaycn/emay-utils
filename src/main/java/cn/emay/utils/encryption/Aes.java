@@ -18,7 +18,7 @@ public class Aes {
 	 * 算法：AES/ECB/PKCS5Padding
 	 */
 	public final static String ALGORITHM_AEPP = "AES/ECB/PKCS5Padding";
-	
+
 	public final static String PKCS7PADDING = "PKCS7Padding";
 
 	/**

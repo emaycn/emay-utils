@@ -94,7 +94,7 @@ public class PropertiesUtils {
 		if (valuep.equalsIgnoreCase("true") || valuep.equalsIgnoreCase("on") || valuep.equalsIgnoreCase("1")) {
 			return true;
 		}
-		if (valuep.equalsIgnoreCase("false") || valuep.equalsIgnoreCase("off") || valuep.equalsIgnoreCase("0")) {			
+		if (valuep.equalsIgnoreCase("false") || valuep.equalsIgnoreCase("off") || valuep.equalsIgnoreCase("0")) {
 			return false;
 		}
 		return defaultValue;
@@ -157,7 +157,7 @@ public class PropertiesUtils {
 			return defaultValue;
 		}
 		Date date = DateUtils.parseDate(properties.getProperty(key), format);
-		if (date == null) {			
+		if (date == null) {
 			date = defaultValue;
 		}
 		return date;

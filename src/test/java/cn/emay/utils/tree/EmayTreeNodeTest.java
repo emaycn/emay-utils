@@ -1,10 +1,10 @@
 package cn.emay.utils.tree;
 
 /**
-* 
-* @author Frank
-*
-*/
+ * 
+ * @author Frank
+ *
+ */
 public class EmayTreeNodeTest {
 
 	public static void main(String[] args) {

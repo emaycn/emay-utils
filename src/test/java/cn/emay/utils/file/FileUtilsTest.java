@@ -5,10 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 /**
-* 
-* @author Frank
-*
-*/
+ * 
+ * @author Frank
+ *
+ */
 public class FileUtilsTest {
 
 	public static void main(String[] args) throws FileNotFoundException {

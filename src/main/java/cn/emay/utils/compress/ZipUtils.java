@@ -86,8 +86,8 @@ public class ZipUtils {
 			zos.flush();
 		} catch (Exception e) {
 			throw new IllegalArgumentException(e);
-		}finally {
-			if(zos != null) {
+		} finally {
+			if (zos != null) {
 				try {
 					zos.close();
 				} catch (IOException e) {
@@ -278,7 +278,7 @@ public class ZipUtils {
 			} catch (IOException e) {
 				throw new IllegalArgumentException(e);
 			}
-			if(zos != null) {
+			if (zos != null) {
 				try {
 					zos.close();
 				} catch (IOException e) {
@@ -327,7 +327,7 @@ public class ZipUtils {
 			} catch (IOException e) {
 				throw new IllegalArgumentException(e);
 			}
-			if(zin != null) {
+			if (zin != null) {
 				try {
 					zin.close();
 				} catch (IOException e) {

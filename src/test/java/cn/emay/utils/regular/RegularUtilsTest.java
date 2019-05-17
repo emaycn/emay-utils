@@ -1,10 +1,10 @@
 package cn.emay.utils.regular;
 
 /**
-* 
-* @author Frank
-*
-*/
+ * 
+ * @author Frank
+ *
+ */
 public class RegularUtilsTest {
 
 	public static void main(String[] args) {

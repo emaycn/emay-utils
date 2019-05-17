@@ -8,10 +8,10 @@ import org.junit.Test;
 import cn.emay.utils.encryption.Base64;
 
 /**
-* 
-* @author Frank
-*
-*/
+ * 
+ * @author Frank
+ *
+ */
 public class Base64Test {
 
 	@Test

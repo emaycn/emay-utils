@@ -8,10 +8,10 @@ import org.junit.Test;
 import cn.emay.utils.encryption.Aes;
 
 /**
-* 
-* @author Frank
-*
-*/
+ * 
+ * @author Frank
+ *
+ */
 public class AesTest {
 
 	@Test

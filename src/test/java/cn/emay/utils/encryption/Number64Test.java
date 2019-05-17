@@ -8,10 +8,10 @@ import org.junit.Test;
 import cn.emay.utils.encryption.Number64;
 
 /**
-* 
-* @author Frank
-*
-*/
+ * 
+ * @author Frank
+ *
+ */
 public class Number64Test {
 
 	@Test

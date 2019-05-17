@@ -8,10 +8,10 @@ import org.junit.Test;
 import cn.emay.utils.encryption.HexByte;
 
 /**
-* 
-* @author Frank
-*
-*/
+ * 
+ * @author Frank
+ *
+ */
 public class HexByteTest {
 
 	@Test

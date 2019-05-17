@@ -31,7 +31,8 @@ public class RegularUtils {
 	 *
 	 * @Title: specialCodeEscape
 	 * @Description: 特殊字符转义
-	 * @param @param value
+	 * @param @param
+	 *            value
 	 * @param @return
 	 * @return String
 	 */
@@ -41,7 +42,6 @@ public class RegularUtils {
 		}
 		return value;
 	}
-
 
 	/**
 	 * 验证只含有中文和英文
@@ -58,7 +58,6 @@ public class RegularUtils {
 		Matcher m = p.matcher(val);
 		return m.matches();
 	}
-
 
 	/**
 	 * 校验是否包含特殊字符

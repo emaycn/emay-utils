@@ -12,10 +12,10 @@ import org.mockito.Mockito;
 import cn.emay.utils.db.common.Page;
 
 /**
-* 
-* @author Frank
-*
-*/
+ * 
+ * @author Frank
+ *
+ */
 public class PageTest {
 
 	private int currentPageNum = 5;

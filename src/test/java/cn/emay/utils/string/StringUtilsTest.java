@@ -4,10 +4,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
-* 
-* @author Frank
-*
-*/
+ * 
+ * @author Frank
+ *
+ */
 public class StringUtilsTest {
 
 	@Test

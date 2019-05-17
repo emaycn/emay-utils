@@ -6,10 +6,10 @@ import java.util.Date;
 import org.junit.Test;
 
 /**
-* 
-* @author Frank
-*
-*/
+ * 
+ * @author Frank
+ *
+ */
 public class PropertiesUtilsTest {
 
 	@Test

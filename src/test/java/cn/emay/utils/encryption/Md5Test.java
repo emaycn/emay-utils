@@ -8,10 +8,10 @@ import org.junit.Test;
 import cn.emay.utils.encryption.Md5;
 
 /**
-* 
-* @author Frank
-*
-*/
+ * 
+ * @author Frank
+ *
+ */
 public class Md5Test {
 
 	@Test

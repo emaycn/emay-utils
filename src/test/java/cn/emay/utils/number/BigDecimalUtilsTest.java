@@ -7,10 +7,10 @@ import org.junit.Test;
 import cn.emay.utils.number.BigDecimalUtils;
 
 /**
-* 
-* @author Frank
-*
-*/
+ * 
+ * @author Frank
+ *
+ */
 public class BigDecimalUtilsTest {
 
 	@Test

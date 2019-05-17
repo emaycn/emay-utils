@@ -10,10 +10,10 @@ import cn.emay.utils.db.jdbc.JdbcUtils;
 import cn.emay.utils.db.jdbc.JdbcBeanParser;
 
 /**
-* 
-* @author Frank
-*
-*/
+ * 
+ * @author Frank
+ *
+ */
 public class JdbcUtilsTest {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {

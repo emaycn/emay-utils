@@ -1,10 +1,10 @@
 package cn.emay.utils.result;
 
 /**
-* 
-* @author Frank
-*
-*/
+ * 
+ * @author Frank
+ *
+ */
 public class ResultTest {
 
 	public static void main(String[] args) {

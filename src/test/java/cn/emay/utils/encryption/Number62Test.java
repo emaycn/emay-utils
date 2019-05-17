@@ -8,10 +8,10 @@ import org.junit.Test;
 import cn.emay.utils.encryption.Number62;
 
 /**
-* 
-* @author Frank
-*
-*/
+ * 
+ * @author Frank
+ *
+ */
 public class Number62Test {
 
 	@Test

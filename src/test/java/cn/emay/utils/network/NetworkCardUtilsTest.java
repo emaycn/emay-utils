@@ -3,10 +3,10 @@ package cn.emay.utils.network;
 import java.net.SocketException;
 
 /**
-* 
-* @author Frank
-*
-*/
+ * 
+ * @author Frank
+ *
+ */
 public class NetworkCardUtilsTest {
 
 	public static void main(String args[]) throws SocketException {
