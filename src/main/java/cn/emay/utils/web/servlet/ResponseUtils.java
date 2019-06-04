@@ -28,7 +28,9 @@ public class ResponseUtils {
 	public static void addCookie(HttpServletResponse response, String name, String value, String comment, String domain, String path, int version, int maxAge, boolean secure) {
 		Cookie cookie = new Cookie(name, value);
 		cookie.setComment(comment);
-		cookie.setDomain(domain);
+		if(domain != null) {
+			cookie.setDomain(domain);
+		}
 		cookie.setPath(path);
 		cookie.setSecure(secure);
 		cookie.setVersion(version);
