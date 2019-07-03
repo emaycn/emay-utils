@@ -1,6 +1,6 @@
 package cn.emay.utils.tree;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -97,7 +97,7 @@ public class EmayTreeNode<K, T> {
 	 */
 	public boolean addChild(EmayTreeNode<K, T> child, boolean isCover) {
 		if (children == null) {
-			children = new HashMap<K, EmayTreeNode<K, T>>(8);
+			children = new LinkedHashMap<K, EmayTreeNode<K, T>>(8);
 		}
 		boolean isCo = (children.containsKey(child.id) && isCover) || (!children.containsKey(child.id));
 		if (isCo) {
