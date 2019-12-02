@@ -1,8 +1,10 @@
 package cn.emay.utils.file;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -303,7 +305,47 @@ public class FileUtils {
 	}
 
 	/**
-	 * 文件写流<br/>
+	 * 数据写文件<br/>
+	 * 
+	 * @param data
+	 *            数据
+	 * @param toFilePath
+	 *            文件地址
+	 */
+	public static void write(String data, String toFilePath) {
+		if (data == null) {
+			throw new IllegalArgumentException("data is null");
+		}
+		if (toFilePath == null) {
+			throw new IllegalArgumentException("toFilePath is null");
+		}
+		File file = new File(toFilePath);
+		if (file.exists()) {
+			throw new IllegalArgumentException("toFilePath " + toFilePath + " is exists");
+		}
+		if (!file.getParentFile().exists()) {
+			file.getParentFile().mkdirs();
+		}
+		FileOutputStream out = null;
+		try {
+			out = new FileOutputStream(toFilePath);
+			out.write(data.getBytes());
+			out.flush();
+		} catch (IOException e) {
+			throw new IllegalArgumentException(e);
+		} finally {
+			if (out != null) {
+				try {
+					out.close();
+				} catch (IOException e) {
+					throw new IllegalArgumentException(e);
+				}
+			}
+		}
+	}
+
+	/**
+	 * 文件读流<br/>
 	 * 
 	 * @param srcFilePath
 	 *            文件
@@ -346,6 +388,65 @@ public class FileUtils {
 				throw new IllegalArgumentException(e);
 			}
 		}
+	}
+
+	/**
+	 * 文件逐行读<br/>
+	 * 
+	 * @param srcFilePath
+	 *            文件
+	 * @param LineHandler
+	 *            行处理器
+	 */
+	public static void readByLine(String srcFilePath, LineHandler lineHandler) {
+		if (srcFilePath == null) {
+			throw new IllegalArgumentException("srcFilePath is null");
+		}
+		File file = new File(srcFilePath);
+		if (!file.exists()) {
+			throw new IllegalArgumentException("srcFilePath " + srcFilePath + " is not exists");
+		}
+		if (lineHandler == null) {
+			throw new IllegalArgumentException("lineHandler is null");
+		}
+		FileReader in = null;
+		BufferedReader br = null;
+		try {
+			in = new FileReader(srcFilePath);
+			br = new BufferedReader(in);
+			String str = null;
+			while ((str = br.readLine()) != null) {
+				lineHandler.handle(str);
+			}
+		} catch (IOException e) {
+			throw new IllegalArgumentException(e);
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					throw new IllegalArgumentException(e);
+				}
+			}
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException e) {
+					throw new IllegalArgumentException(e);
+				}
+			}
+		}
+	}
+
+	/**
+	 * 行数据处理器
+	 * 
+	 * @author Frank
+	 *
+	 */
+	public static interface LineHandler {
+
+		void handle(String line);
 	}
 
 }
