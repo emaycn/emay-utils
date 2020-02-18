@@ -303,7 +303,7 @@ public class FileUtils {
 			}
 		}
 	}
-
+	
 	/**
 	 * 数据写文件<br/>
 	 * 
@@ -438,12 +438,6 @@ public class FileUtils {
 		}
 	}
 
-	/**
-	 * 行数据处理器
-	 * 
-	 * @author Frank
-	 *
-	 */
 	public static interface LineHandler {
 
 		void handle(String line);

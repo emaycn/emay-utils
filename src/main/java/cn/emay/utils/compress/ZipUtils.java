@@ -82,7 +82,7 @@ public class ZipUtils {
 		ZipOutputStream zos = null;
 		try {
 			zos = new ZipOutputStream(new CheckedOutputStream(targetOutputStream, new CRC32()));
-			zipEntry(srcFile.getAbsolutePath(), srcFile, zos);
+			zipEntry(srcFile.getParentFile().getAbsolutePath(), srcFile, zos);
 			zos.flush();
 		} catch (Exception e) {
 			throw new IllegalArgumentException(e);
