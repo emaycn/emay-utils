@@ -4,19 +4,18 @@ import java.util.Map;
 
 /**
  * 数据转换
- * 
- * @author Frank
  *
  * @param <T>
+ * @author Frank
  */
-public interface JdbcBeanParser<T extends Object> {
+public interface JdbcBeanParser<T> {
 
-	/**
-	 * 转换
-	 * 
-	 * @param data
-	 * @return
-	 */
-	public T parser(Map<String, Object> data);
+    /**
+     * 转换
+     *
+     * @param data map数据
+     * @return 实体数据
+     */
+    T parser(Map<String, Object> data);
 
 }

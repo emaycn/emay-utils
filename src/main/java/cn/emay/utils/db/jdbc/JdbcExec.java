@@ -4,24 +4,20 @@ import java.sql.Connection;
 
 /**
  * JDBC执行器
- * 
- * @author Frank
  *
  * @param <T>
+ * @author Frank
  */
 public interface JdbcExec<T> {
 
-	/**
-	 * 执行
-	 * 
-	 * @param connection
-	 * @return
-	 */
-	public T exec(Connection connection);
+    /**
+     * 执行
+     */
+    T exec(Connection connection);
 
-	/**
-	 * 关闭
-	 */
-	public void close();
+    /**
+     * 关闭
+     */
+    void close();
 
 }

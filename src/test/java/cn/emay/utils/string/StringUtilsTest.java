@@ -4,16 +4,14 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * 
  * @author Frank
- *
  */
 public class StringUtilsTest {
 
-	@Test
-	public void test() {
-		Assert.assertEquals(StringUtils.isBool("true"), true);
-		Assert.assertEquals(StringUtils.isBool("1"), false);
-	}
+    @Test
+    public void test() {
+        Assert.assertTrue(StringUtils.isBool("true"));
+        Assert.assertFalse(StringUtils.isBool("1"));
+    }
 
 }
