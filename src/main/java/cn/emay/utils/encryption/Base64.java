@@ -149,4 +149,21 @@ public class Base64 {
     }
 
 
+    public static String safeUrlBase64Encode(byte[] data) {
+        String encodeBase64 = encode(data);
+        String safeBase64Str = encodeBase64.replace('+', '-');
+        safeBase64Str = safeBase64Str.replace('/', '_');
+        safeBase64Str = safeBase64Str.replaceAll("=", "");
+        return safeBase64Str;
+    }
+
+    public static byte[] safeUrlBase64Decode(final String safeBase64Str) {
+        String base64Str = safeBase64Str.replace('-', '+');
+        base64Str = base64Str.replace('_', '/');
+        int mod4 = base64Str.length() % 4;
+        if (mod4 > 0) {
+            base64Str = base64Str + "====".substring(mod4);
+        }
+        return decode(base64Str);
+    }
 }
